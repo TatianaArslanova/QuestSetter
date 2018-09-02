@@ -21,6 +21,7 @@ allprojects {
         jcenter()
     }
     ext {
+        androidSupportVer = "27.1.1"
         daggerVer = "2.14.1"
         roomVer = "1.1.1"
         rxJavaAndroidVer = "2.0.2"

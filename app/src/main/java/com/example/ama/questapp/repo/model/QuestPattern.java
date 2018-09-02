@@ -7,25 +7,25 @@ import android.arch.persistence.room.PrimaryKey;
 public class QuestPattern {
 
     @PrimaryKey(autoGenerate = true)
-    private final int id;
-    private final String name;
-    private final String description;
+    private final int questId;
+    private final String questName;
+    private final String questDescription;
 
-    public QuestPattern(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public QuestPattern(int questId, String questName, String questDescription) {
+        this.questId = questId;
+        this.questName = questName;
+        this.questDescription = questDescription;
     }
 
-    public int getId() {
-        return id;
+    public int getQuestId() {
+        return questId;
     }
 
-    public String getName() {
-        return name;
+    public String getQuestName() {
+        return questName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getQuestDescription() {
+        return questDescription;
     }
 }
