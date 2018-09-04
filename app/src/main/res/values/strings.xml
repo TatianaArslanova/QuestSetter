@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QuestApp</string>
+    <string name="main_quest_list_empty_message">Квестов нет</string>
 </resources>

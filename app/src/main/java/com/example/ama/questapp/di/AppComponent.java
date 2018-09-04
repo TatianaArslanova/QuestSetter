@@ -7,7 +7,8 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AppModule.class, DbModule.class})
+@Component(modules = {AppModule.class, DbModule.class, ListModule.class})
 public interface AppComponent {
     void inject(QuestListFragment questListFragment);
+    //TODO: Another Scope
 }

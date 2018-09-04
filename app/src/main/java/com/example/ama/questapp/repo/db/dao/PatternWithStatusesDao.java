@@ -13,7 +13,7 @@ import io.reactivex.Single;
 @Dao
 public interface PatternWithStatusesDao {
 
-    @Query("SELECT * FROM usertasks, patterns WHERE usertasks.patternId=patterns.questId")
+    @Query("SELECT * FROM usertasks, patterns WHERE usertasks.patternId=patterns.questId ORDER BY usertasks.isCompleted")
     Flowable<List<PatternWithStatus>> getAllUserQuests();
 
     @Query("SELECT * FROM patterns INNER JOIN usertasks ON (usertasks.patternId = patterns.questId AND usertasks.isCompleted = 0)")
