@@ -17,5 +17,7 @@ public class ViewHolderQuestCompleted extends RecyclerView.ViewHolder {
                 .setText(item.getPattern().getQuestName());
         ((TextView) itemView.findViewById(R.id.tv_quest_description))
                 .setText(item.getPattern().getQuestDescription());
+        ((TextView) itemView.findViewById(R.id.tv_target_progress))
+                .setText(item.getUserQuest().getTaskProgress() + "/" + item.getUserQuest().getTaskTarget());
     }
 }

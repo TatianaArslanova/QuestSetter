@@ -34,5 +34,7 @@ public class ViewHolderQuestNotCompleted extends RecyclerView.ViewHolder {
                 .setMax(item.getUserQuest().getTaskTarget());
         ((ProgressBar) itemView.findViewById(R.id.pb_quest_progress))
                 .setProgress(item.getUserQuest().getTaskProgress());
+        ((TextView) itemView.findViewById(R.id.tv_target_progress))
+                .setText(item.getUserQuest().getTaskProgress() + "/" + item.getUserQuest().getTaskTarget());
     }
 }
