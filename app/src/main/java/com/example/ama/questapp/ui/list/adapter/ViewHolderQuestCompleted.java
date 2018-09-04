@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.repo.model.PatternWithStatus;
+import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
 public class ViewHolderQuestCompleted extends RecyclerView.ViewHolder {
     ViewHolderQuestCompleted(View itemView) {
@@ -13,7 +13,9 @@ public class ViewHolderQuestCompleted extends RecyclerView.ViewHolder {
     }
 
     void bind(PatternWithStatus item) {
-        ((TextView) itemView.findViewById(R.id.tv_quest_name)).setText(item.getPattern().getQuestName());
-        ((TextView) itemView.findViewById(R.id.tv_quest_description)).setText(item.getPattern().getQuestDescription());
+        ((TextView) itemView.findViewById(R.id.tv_quest_name))
+                .setText(item.getPattern().getQuestName());
+        ((TextView) itemView.findViewById(R.id.tv_quest_description))
+                .setText(item.getPattern().getQuestDescription());
     }
 }

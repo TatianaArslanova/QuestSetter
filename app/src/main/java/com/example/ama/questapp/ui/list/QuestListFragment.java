@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.repo.model.PatternWithStatus;
 import com.example.ama.questapp.repo.model.UserQuest;
+import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.ui.base.ViewState;
 import com.example.ama.questapp.ui.list.adapter.MainQuestListAdapter;
 import com.example.ama.questapp.ui.list.mvp.MainQuestListView;

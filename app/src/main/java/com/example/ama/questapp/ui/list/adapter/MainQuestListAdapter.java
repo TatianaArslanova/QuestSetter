@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.repo.model.PatternWithStatus;
 import com.example.ama.questapp.repo.model.UserQuest;
+import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
 import java.util.ArrayList;
 import java.util.List;
