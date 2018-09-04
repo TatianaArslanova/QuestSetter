@@ -8,14 +8,14 @@ public class PatternWithStatus {
     private QuestPattern pattern;
 
     @Embedded
-    private UserTask status;
+    private UserQuest userQuest;
 
-    public UserTask getStatus() {
-        return status;
+    public UserQuest getUserQuest() {
+        return userQuest;
     }
 
-    public void setStatus(UserTask status) {
-        this.status = status;
+    public void setUserQuest(UserQuest userQuest) {
+        this.userQuest = userQuest;
     }
 
     public QuestPattern getPattern() {
@@ -28,6 +28,6 @@ public class PatternWithStatus {
 
     @Override
     public String toString() {
-        return pattern.getQuestName() + " " + status.isCompleted();
+        return pattern.getQuestName() + " " + userQuest.isCompleted();
     }
 }

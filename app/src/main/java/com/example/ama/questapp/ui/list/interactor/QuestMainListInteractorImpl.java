@@ -1,45 +1,40 @@
 package com.example.ama.questapp.ui.list.interactor;
 
-import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.repo.engine.DatabaseOperator;
+import com.example.ama.questapp.repo.engine.UserQuestEngine;
 import com.example.ama.questapp.repo.model.PatternWithStatus;
-import com.example.ama.questapp.repo.model.UserTask;
+import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.ui.base.ViewState;
 import com.example.ama.questapp.ui.base.ViewStateFactory;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
-    private QuestDatabase database;
+    private DatabaseOperator dbOperator;
     private ViewStateFactory<List<PatternWithStatus>> stateFactory;
+    private UserQuestEngine userQuestEngine;
 
-    public QuestMainListInteractorImpl(QuestDatabase database,
-                                       ViewStateFactory<List<PatternWithStatus>> stateFactory) {
-        this.database = database;
+    public QuestMainListInteractorImpl(DatabaseOperator dbOperator,
+                                       ViewStateFactory<List<PatternWithStatus>> stateFactory,
+                                       UserQuestEngine userQuestEngine) {
+        this.dbOperator = dbOperator;
         this.stateFactory = stateFactory;
+        this.userQuestEngine = userQuestEngine;
     }
 
     @Override
-    public void updateStatus(final UserTask status) {
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                database.getStatusDao().updateStatus(status);
-            }
-        })
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+    public void completeQuest(UserQuest userQuest) {
+        dbOperator.updateUserQuest(
+                userQuestEngine.completeQuest(userQuest));
     }
 
     @Override
     public Flowable<ViewState<List<PatternWithStatus>>> loadAllUserQuests() {
-        return database.getPatternWithStatusesDao().getAllUserQuests()
+        return dbOperator.loadAllUserQuests()
                 .map(new Function<List<PatternWithStatus>, ViewState<List<PatternWithStatus>>>() {
                     @Override
                     public ViewState<List<PatternWithStatus>> apply(List<PatternWithStatus> patternWithStatuses) throws Exception {

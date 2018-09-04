@@ -1,6 +1,7 @@
 package com.example.ama.questapp.ui.list.mvp;
 
 import com.example.ama.questapp.repo.model.PatternWithStatus;
+import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.ui.base.BasePresenter;
 import com.example.ama.questapp.ui.base.ViewState;
 import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl;
@@ -20,6 +21,13 @@ public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
     }
 
     @Override
+    public void attachView(MainQuestListView view) {
+        super.attachView(view);
+        loadData();
+        bindIntents();
+    }
+
+    @Override
     public void loadData() {
         disposable.add(interactor.loadAllUserQuests()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -32,5 +40,17 @@ public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
                         }
                     }
                 }));
+    }
+
+    private void bindIntents() {
+        disposable.add(
+                view.completeQuestIntent()
+                        .subscribe(new Consumer<UserQuest>() {
+                            @Override
+                            public void accept(UserQuest userQuest) throws Exception {
+                                interactor.completeQuest(userQuest);
+                            }
+                        })
+        );
     }
 }

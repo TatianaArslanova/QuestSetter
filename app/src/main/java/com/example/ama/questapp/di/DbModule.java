@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.repo.engine.DatabaseOperator;
 
 import javax.inject.Singleton;
 
@@ -18,5 +19,11 @@ public class DbModule {
     @Singleton
     QuestDatabase provideQuestDatabase(Context context) {
         return Room.databaseBuilder(context, QuestDatabase.class, dbName).build();
+    }
+
+    @Provides
+    @Singleton
+    DatabaseOperator provideDatabaseOperator(QuestDatabase database){
+        return new DatabaseOperator(database);
     }
 }

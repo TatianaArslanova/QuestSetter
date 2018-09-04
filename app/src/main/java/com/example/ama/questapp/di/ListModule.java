@@ -1,6 +1,8 @@
 package com.example.ama.questapp.di;
 
 import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.repo.engine.DatabaseOperator;
+import com.example.ama.questapp.repo.engine.UserQuestEngine;
 import com.example.ama.questapp.repo.model.PatternWithStatus;
 import com.example.ama.questapp.ui.base.ViewStateFactory;
 import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl;
@@ -19,9 +21,10 @@ public class ListModule {
     @Provides
     @Singleton
     QuestMainListInteractorImpl provideMainListInteractor(
-            QuestDatabase database,
-            ViewStateFactory<List<PatternWithStatus>> stateFactory) {
-        return new QuestMainListInteractorImpl(database, stateFactory);
+            DatabaseOperator databaseOperator,
+            ViewStateFactory<List<PatternWithStatus>> stateFactory,
+            UserQuestEngine userQuestEngine) {
+        return new QuestMainListInteractorImpl(databaseOperator, stateFactory, userQuestEngine);
     }
 
     @Provides

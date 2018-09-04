@@ -9,14 +9,14 @@ import android.arch.persistence.room.PrimaryKey;
                 entity = QuestPattern.class,
                 parentColumns = "questId",
                 childColumns = "patternId"))
-public class UserTask {
+public class UserQuest {
 
     @PrimaryKey(autoGenerate = true)
     private final int taskId;
     private boolean isCompleted;
     private final int patternId;
 
-    public UserTask(int taskId, boolean isCompleted, int patternId) {
+    public UserQuest(int taskId, boolean isCompleted, int patternId) {
         this.taskId = taskId;
         this.isCompleted = isCompleted;
         this.patternId = patternId;

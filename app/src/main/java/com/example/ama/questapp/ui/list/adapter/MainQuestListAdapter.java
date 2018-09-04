@@ -7,25 +7,24 @@ import android.view.ViewGroup;
 
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.repo.model.PatternWithStatus;
+import com.example.ama.questapp.repo.model.UserQuest;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.subjects.PublishSubject;
 
 public class MainQuestListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int COMPLETED_QUEST = 0;
     private static final int NOT_COMPLETED_QUEST = 1;
 
-    private OnDoneClickListener listener;
     private List<PatternWithStatus> items = new ArrayList<>();
-
-    public MainQuestListAdapter(OnDoneClickListener listener) {
-        this.listener = listener;
-    }
+    private PublishSubject<UserQuest> onDoneClicklistener = PublishSubject.create();
 
     @Override
     public int getItemViewType(int position) {
-        return items.get(position).getStatus().isCompleted() ? COMPLETED_QUEST : NOT_COMPLETED_QUEST;
+        return items.get(position).getUserQuest().isCompleted() ? COMPLETED_QUEST : NOT_COMPLETED_QUEST;
     }
 
     @NonNull
@@ -41,7 +40,7 @@ public class MainQuestListAdapter extends RecyclerView.Adapter<RecyclerView.View
         return new ViewHolderQuestNotCompleted(
                 LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.main_quest_list_rv_item_not_completed,
-                        parent, false), listener);
+                        parent, false), onDoneClicklistener);
     }
 
     @Override
@@ -62,5 +61,9 @@ public class MainQuestListAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.items.clear();
         this.items.addAll(items);
         notifyDataSetChanged();
+    }
+
+    public PublishSubject<UserQuest> getOnDoneClicklistener() {
+        return onDoneClicklistener;
     }
 }

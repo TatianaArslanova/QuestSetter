@@ -4,19 +4,19 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Update;
 
-import com.example.ama.questapp.repo.model.UserTask;
+import com.example.ama.questapp.repo.model.UserQuest;
 
 import java.util.List;
 
 @Dao
-public interface UserTaskDao {
+public interface UserQuestDao {
 
     @Insert
-    void insertAllQuestStatuses(List<UserTask> userTasks);
+    void insertAllQuestStatuses(List<UserQuest> userQuests);
 
     @Insert
-    void insertStatus(UserTask status);
+    void insertStatus(UserQuest status);
 
     @Update
-    void updateStatus(UserTask status);
+    void updateStatus(UserQuest status);
 }

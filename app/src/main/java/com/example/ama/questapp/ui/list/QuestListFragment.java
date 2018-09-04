@@ -16,16 +16,17 @@ import android.widget.Toast;
 import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.repo.model.PatternWithStatus;
-import com.example.ama.questapp.repo.model.UserTask;
+import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.ui.base.ViewState;
 import com.example.ama.questapp.ui.list.adapter.MainQuestListAdapter;
-import com.example.ama.questapp.ui.list.adapter.OnDoneClickListener;
 import com.example.ama.questapp.ui.list.mvp.MainQuestListView;
 import com.example.ama.questapp.ui.list.mvp.QuestMainListPresenter;
 
 import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.subjects.PublishSubject;
 
 public class QuestListFragment extends Fragment implements MainQuestListView {
     @Inject
@@ -75,12 +76,7 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
         progressBar = view.findViewById(R.id.pb_loading);
         tvEmptyMessage = view.findViewById(R.id.tv_empty_message);
         rvMain = view.findViewById(R.id.rv_main_quest_list);
-        adapter = new MainQuestListAdapter(new OnDoneClickListener() {
-            @Override
-            public void onDoneClick(UserTask status) {
-
-            }
-        });
+        adapter = new MainQuestListAdapter();
         rvMain.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMain.setAdapter(adapter);
     }
@@ -91,6 +87,11 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
         error(viewState.isError());
         data(viewState.getData());
         emptyMessage(!(viewState.isLoading() || viewState.isError() || viewState.isData()));
+    }
+
+    @Override
+    public PublishSubject<UserQuest> completeQuestIntent() {
+        return adapter.getOnDoneClicklistener();
     }
 
     private void loading(boolean loading) {

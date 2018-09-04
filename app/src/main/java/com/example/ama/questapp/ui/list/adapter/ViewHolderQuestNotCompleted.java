@@ -6,13 +6,16 @@ import android.widget.TextView;
 
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.repo.model.PatternWithStatus;
+import com.example.ama.questapp.repo.model.UserQuest;
+
+import io.reactivex.subjects.PublishSubject;
 
 public class ViewHolderQuestNotCompleted extends RecyclerView.ViewHolder {
-    private OnDoneClickListener listener;
+    private PublishSubject<UserQuest> onDoneClickListener;
 
-    ViewHolderQuestNotCompleted(View itemView, OnDoneClickListener listener) {
+    ViewHolderQuestNotCompleted(View itemView, PublishSubject<UserQuest> onDoneClickListener) {
         super(itemView);
-        this.listener = listener;
+        this.onDoneClickListener = onDoneClickListener;
     }
 
     void bind(final PatternWithStatus item) {
@@ -21,7 +24,7 @@ public class ViewHolderQuestNotCompleted extends RecyclerView.ViewHolder {
         itemView.findViewById(R.id.btn_done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDoneClick(item.getStatus());
+                onDoneClickListener.onNext(item.getUserQuest());
             }
         });
     }
