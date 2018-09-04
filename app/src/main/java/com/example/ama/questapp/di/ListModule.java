@@ -1,9 +1,8 @@
 package com.example.ama.questapp.di;
 
-import com.example.ama.questapp.repo.db.QuestDatabase;
 import com.example.ama.questapp.repo.engine.DatabaseOperator;
 import com.example.ama.questapp.repo.engine.UserQuestEngine;
-import com.example.ama.questapp.repo.model.PatternWithStatus;
+import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.ui.base.ViewStateFactory;
 import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl;
 import com.example.ama.questapp.ui.list.mvp.QuestMainListPresenter;

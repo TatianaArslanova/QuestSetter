@@ -1,6 +1,9 @@
-package com.example.ama.questapp.repo.model;
+package com.example.ama.questapp.repo.model.pojo;
 
 import android.arch.persistence.room.Embedded;
+
+import com.example.ama.questapp.repo.model.QuestPattern;
+import com.example.ama.questapp.repo.model.UserQuest;
 
 public class PatternWithStatus {
 
@@ -24,10 +27,5 @@ public class PatternWithStatus {
 
     public void setPattern(QuestPattern pattern) {
         this.pattern = pattern;
-    }
-
-    @Override
-    public String toString() {
-        return pattern.getQuestName() + " " + userQuest.isCompleted();
     }
 }
