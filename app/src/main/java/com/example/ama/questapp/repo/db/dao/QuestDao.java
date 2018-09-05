@@ -19,6 +19,11 @@ public interface QuestDao {
     @Query("SELECT * FROM patterns")
     Single<List<QuestPattern>> getAllQuestPatterns();
 
-    @Query("SELECT * FROM patterns INNER JOIN usertasks ON usertasks.patternId = patterns.questId")
-    Single<List<QuestPattern>> getAllUserQuests();
+    @Query("SELECT * FROM patterns WHERE questId NOT IN (SELECT DISTINCT patternId FROM usertasks)")
+    List<QuestPattern> getAllNotUsedQuests();
+
+    @Query("SELECT * FROM patterns WHERE questId " +
+            "IN (SELECT DISTINCT patternId FROM usertasks WHERE isCompleted=1 " +
+            "AND patternId NOT IN(SELECT patternId FROM usertasks WHERE isCompleted=0))")
+    List<QuestPattern> getAllNotCurrentCompletedQuests();
 }

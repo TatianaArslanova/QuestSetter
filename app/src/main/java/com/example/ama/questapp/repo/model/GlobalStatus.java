@@ -1,9 +1,14 @@
 package com.example.ama.questapp.repo.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "globalstatuses")
+@Entity(tableName = "globalstatuses",
+        foreignKeys = @ForeignKey(
+        entity = QuestPattern.class,
+        parentColumns = "questId",
+        childColumns = "patternId"))
 public class GlobalStatus {
 
     @PrimaryKey(autoGenerate = true)
