@@ -13,12 +13,12 @@ import dagger.Provides;
 
 @Module
 public class DbModule {
-    private static final String dbName = "questApp";
+    private static final String DB_NAME = "questApp";
 
     @Provides
     @Singleton
     QuestDatabase provideQuestDatabase(Context context) {
-        return Room.databaseBuilder(context, QuestDatabase.class, dbName).build();
+        return Room.databaseBuilder(context, QuestDatabase.class, DB_NAME).build();
     }
 
     @Provides

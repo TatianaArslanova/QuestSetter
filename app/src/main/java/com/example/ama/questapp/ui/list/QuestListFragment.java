@@ -43,7 +43,7 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        QuestApp.getInstance().getComponent().inject(this);
+        QuestApp.getInstance().getComponent().mainQuestListComponent().inject(this);
         super.onCreate(savedInstanceState);
     }
 

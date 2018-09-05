@@ -1,4 +1,4 @@
-package com.example.ama.questapp.di;
+package com.example.ama.questapp.ui.list.di;
 
 import com.example.ama.questapp.repo.engine.DatabaseOperator;
 import com.example.ama.questapp.repo.engine.UserQuestEngine;
@@ -18,7 +18,7 @@ import dagger.Provides;
 public class ListModule {
 
     @Provides
-    @Singleton
+    @MainQuestListScope
     QuestMainListInteractorImpl provideMainListInteractor(
             DatabaseOperator databaseOperator,
             ViewStateFactory<List<PatternWithStatus>> stateFactory,
@@ -27,13 +27,13 @@ public class ListModule {
     }
 
     @Provides
-    @Singleton
+    @MainQuestListScope
     ViewStateFactory<List<PatternWithStatus>> provideViewStateFactory() {
         return new ViewStateFactory<>();
     }
 
     @Provides
-    @Singleton
+    @MainQuestListScope
     QuestMainListPresenter provideQuestMainListPresenter(QuestMainListInteractorImpl interactor){
         return new QuestMainListPresenter(interactor);
     }
