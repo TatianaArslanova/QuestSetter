@@ -6,8 +6,6 @@ import com.example.ama.questapp.engine.producer.DailyUserTaskProducer;
 import com.example.ama.questapp.repo.model.UserQuest;
 
 public class UserQuestEngine {
-    private static final int DEFAULT_USER_QUEST_PRODUCE_COUNT = 3;
-
     private DailyUserTaskProducer producer;
     private UserQuestCreator creator;
     private UserQuestUpdater updater;
@@ -22,9 +20,9 @@ public class UserQuestEngine {
         updater.onIncrementUserQuestProgress(userQuest);
     }
 
-    public void addNewRandomDailyQuests() {
+    public void addNewRandomDailyQuests(int maxCount) {
         creator.createUserQuests(
-                producer.produceUserQuests(DEFAULT_USER_QUEST_PRODUCE_COUNT)
+                producer.produceUserQuests(maxCount)
         );
     }
 }
