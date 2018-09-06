@@ -1,6 +1,6 @@
 package com.example.ama.questapp.engine.operations;
 
-import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
 import com.example.ama.questapp.repo.model.GlobalStatus;
 import com.example.ama.questapp.repo.model.QuestPattern;
 import com.example.ama.questapp.repo.model.UserQuest;
@@ -15,15 +15,15 @@ public class UserQuestCreator {
     private static final int ONCE_DEFAULT_TARGET = 1;
     private static final int COUNT_DEFAULT_TARGET = 3;
 
-    private QuestDatabase database;
+    private EngineQuestProvider questProvider;
 
-    public UserQuestCreator(QuestDatabase database) {
-        this.database = database;
+    public UserQuestCreator(EngineQuestProvider questProvider) {
+        this.questProvider = questProvider;
     }
 
     public void createUserQuests(final List<QuestPattern> patterns) {
         List<UserQuest> userQuests = patternsToUserQuests(patterns);
-        addQuestsWithGlobalStatusesToDatabase(
+        questProvider.addQuestsWithGlobalStatuses(
                 userQuests,
                 getGlobalStatuses(userQuests));
     }
@@ -57,18 +57,12 @@ public class UserQuestCreator {
     }
 
     private GlobalStatus getGlobalStatus(UserQuest userQuest) {
-        GlobalStatus globalStatus = database.getQuestGlobalStatusDao()
-                .getGlobalStatusByPatternId(userQuest.getPatternId());
+        GlobalStatus globalStatus =
+                questProvider.getGlobalStatusByPatternId(userQuest.getPatternId());
         if (globalStatus == null) {
             globalStatus = createGlobalStatus(userQuest);
         }
         return globalStatus;
-    }
-
-    private void addQuestsWithGlobalStatusesToDatabase(List<UserQuest> userQuests,
-                                                       List<GlobalStatus> globalStatuses) {
-        database.getUserQuestDao().insertAllQuestStatuses(userQuests);
-        database.getQuestGlobalStatusDao().insertAllGlobalStatuses(globalStatuses);
     }
 
     private UserQuest createUserQuest(QuestPattern pattern) {

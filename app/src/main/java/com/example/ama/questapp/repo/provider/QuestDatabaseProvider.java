@@ -1,9 +1,13 @@
-package com.example.ama.questapp.engine;
+package com.example.ama.questapp.repo.provider;
 
 import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.repo.model.GlobalStatus;
+import com.example.ama.questapp.repo.model.QuestPattern;
+import com.example.ama.questapp.repo.model.QuestType;
 import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Completable;
@@ -11,10 +15,10 @@ import io.reactivex.Flowable;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
-public class DatabaseOperator {
+public class QuestDatabaseProvider implements QuestProvider {
     private QuestDatabase database;
 
-    public DatabaseOperator(QuestDatabase database) {
+    public QuestDatabaseProvider(QuestDatabase database) {
         this.database = database;
     }
 

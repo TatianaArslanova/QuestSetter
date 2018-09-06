@@ -3,8 +3,11 @@ package com.example.ama.questapp.di;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
+import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
+import com.example.ama.questapp.engine.operations.provider.EngineQuestProviderImpl;
 import com.example.ama.questapp.repo.db.QuestDatabase;
-import com.example.ama.questapp.engine.DatabaseOperator;
+import com.example.ama.questapp.repo.provider.QuestDatabaseProvider;
+import com.example.ama.questapp.repo.provider.QuestProvider;
 
 import javax.inject.Singleton;
 
@@ -23,7 +26,13 @@ public class DbModule {
 
     @Provides
     @Singleton
-    DatabaseOperator provideDatabaseOperator(QuestDatabase database){
-        return new DatabaseOperator(database);
+    QuestProvider provideQuestProvider(QuestDatabase database) {
+        return new QuestDatabaseProvider(database);
+    }
+
+    @Provides
+    @Singleton
+    EngineQuestProvider provideEngineQuestProvider(QuestDatabase database) {
+        return new EngineQuestProviderImpl(database);
     }
 }

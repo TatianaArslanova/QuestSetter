@@ -1,6 +1,6 @@
 package com.example.ama.questapp.engine.operations;
 
-import com.example.ama.questapp.repo.db.QuestDatabase;
+import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
 import com.example.ama.questapp.repo.model.GlobalStatus;
 import com.example.ama.questapp.repo.model.UserQuest;
 
@@ -8,14 +8,14 @@ import java.util.List;
 
 public class UserQuestUpdater {
     private static final int PROGRESS_INCREMENT = 1;
-    private QuestDatabase database;
+    private EngineQuestProvider questProvider;
 
-    public UserQuestUpdater(QuestDatabase database) {
-        this.database = database;
+    public UserQuestUpdater(EngineQuestProvider questProvider) {
+        this.questProvider = questProvider;
     }
 
     public void onIncrementUserQuestProgress(final UserQuest userQuest) {
-        updateQuestWithGlobalStatus(
+        questProvider.updateQuestWithGlobalStatus(
                 incrementQuestProgress(userQuest),
                 calculateGlobalStatus(userQuest)
         );
@@ -32,28 +32,19 @@ public class UserQuestUpdater {
     }
 
     private GlobalStatus calculateGlobalStatus(UserQuest userQuest) {
-        GlobalStatus globalStatus = getGlobalStatusForUserQuest(userQuest);
+        GlobalStatus globalStatus =
+                questProvider.getGlobalStatusByPatternId(userQuest.getPatternId());
         globalStatus.setCountSum(calculateGlobalProgressSum(userQuest));
         return globalStatus;
     }
 
-    private GlobalStatus getGlobalStatusForUserQuest(UserQuest userQuest) {
-        return database.getQuestGlobalStatusDao()
-                .getGlobalStatusByPatternId(userQuest.getPatternId());
-    }
-
     private int calculateGlobalProgressSum(UserQuest userQuest) {
         List<UserQuest> questList =
-                database.getUserQuestDao().getAllStatusesFromPatternId(userQuest.getPatternId());
+                questProvider.getAllStatusesFromPatternId(userQuest.getPatternId());
         int sum = 0;
         for (UserQuest o : questList) {
             sum = sum + o.getTaskProgress();
         }
         return sum;
-    }
-
-    private void updateQuestWithGlobalStatus(UserQuest userQuest, GlobalStatus globalStatus) {
-        database.getUserQuestDao().updateStatus(userQuest);
-        database.getQuestGlobalStatusDao().updateGlobalStatus(globalStatus);
     }
 }

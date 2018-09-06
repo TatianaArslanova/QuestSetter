@@ -3,8 +3,8 @@ package com.example.ama.questapp.di;
 import com.example.ama.questapp.engine.UserQuestEngine;
 import com.example.ama.questapp.engine.operations.UserQuestCreator;
 import com.example.ama.questapp.engine.operations.UserQuestUpdater;
+import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
 import com.example.ama.questapp.engine.producer.DailyUserTaskProducer;
-import com.example.ama.questapp.repo.db.QuestDatabase;
 
 import javax.inject.Singleton;
 
@@ -24,19 +24,19 @@ public class QuestEngineModule {
 
     @Provides
     @Singleton
-    DailyUserTaskProducer provideUserTaskProducer(QuestDatabase database) {
-        return new DailyUserTaskProducer(database);
+    DailyUserTaskProducer provideUserTaskProducer(EngineQuestProvider questProvider) {
+        return new DailyUserTaskProducer(questProvider);
     }
 
     @Provides
     @Singleton
-    UserQuestCreator provideUserQuestCreator(QuestDatabase database) {
-        return new UserQuestCreator(database);
+    UserQuestCreator provideUserQuestCreator(EngineQuestProvider questProvider) {
+        return new UserQuestCreator(questProvider);
     }
 
     @Provides
     @Singleton
-    UserQuestUpdater provideUserQuestUpdater(QuestDatabase database) {
-        return new UserQuestUpdater(database);
+    UserQuestUpdater provideUserQuestUpdater(EngineQuestProvider questProvider) {
+        return new UserQuestUpdater(questProvider);
     }
 }

@@ -39,4 +39,14 @@ public class QuestPattern {
     public QuestType getQuestType() {
         return questType;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj || obj instanceof QuestPattern && this.questId == ((QuestPattern) obj).questId;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.questId;
+    }
 }
