@@ -1,7 +1,7 @@
 package com.example.ama.questapp.ui.list.interactor;
 
-import com.example.ama.questapp.repo.engine.DatabaseOperator;
-import com.example.ama.questapp.repo.engine.UserQuestEngine;
+import com.example.ama.questapp.engine.DatabaseOperator;
+import com.example.ama.questapp.engine.UserQuestEngine;
 import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.ui.base.ViewState;
@@ -24,13 +24,11 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
         this.dbOperator = dbOperator;
         this.stateFactory = stateFactory;
         this.userQuestEngine = userQuestEngine;
-        dbOperator.insertStartDBModel();
     }
 
     @Override
     public void completeQuest(UserQuest userQuest) {
-        dbOperator.updateUserQuest(
-                userQuestEngine.completeQuest(userQuest));
+        userQuestEngine.incrementQuestProgress(userQuest);
     }
 
     @Override

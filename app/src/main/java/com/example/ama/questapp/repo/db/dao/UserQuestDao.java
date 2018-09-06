@@ -24,5 +24,5 @@ public interface UserQuestDao {
     void updateStatus(UserQuest status);
 
     @Query("SELECT * FROM usertasks WHERE patternId = :patternId")
-    Single<List<UserQuest>> getAllStatusesFromPatternId(int patternId);
+    List<UserQuest> getAllStatusesFromPatternId(int patternId);
 }

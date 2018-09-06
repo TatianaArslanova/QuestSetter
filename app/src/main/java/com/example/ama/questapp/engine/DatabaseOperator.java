@@ -1,8 +1,8 @@
-package com.example.ama.questapp.repo.engine;
+package com.example.ama.questapp.engine;
 
 import com.example.ama.questapp.repo.db.QuestDatabase;
-import com.example.ama.questapp.repo.model.PatternWithStatus;
 import com.example.ama.questapp.repo.model.UserQuest;
+import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
 import java.util.List;
 
@@ -27,6 +27,17 @@ public class DatabaseOperator {
             @Override
             public void run() throws Exception {
                 database.getUserQuestDao().updateStatus(userQuest);
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+    }
+
+    public void addUserQuests(final List<UserQuest> quests) {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                database.getUserQuestDao().insertAllQuestStatuses(quests);
             }
         })
                 .subscribeOn(Schedulers.io())

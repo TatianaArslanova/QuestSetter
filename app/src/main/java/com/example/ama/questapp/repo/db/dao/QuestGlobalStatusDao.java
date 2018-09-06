@@ -24,5 +24,5 @@ public interface QuestGlobalStatusDao {
     void updateGlobalStatus(GlobalStatus globalStatus);
 
     @Query("SELECT * FROM globalstatuses WHERE patternId=:patternId")
-    Single<GlobalStatus> getGlobalStatusByPatternId(int patternId);
+    GlobalStatus getGlobalStatusByPatternId(int patternId);
 }

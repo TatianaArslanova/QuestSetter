@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.example.ama.questapp.repo.db.QuestDatabase;
-import com.example.ama.questapp.repo.engine.DatabaseOperator;
+import com.example.ama.questapp.engine.DatabaseOperator;
 
 import javax.inject.Singleton;
 
