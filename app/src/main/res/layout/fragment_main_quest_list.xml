@@ -20,9 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:text="@string/main_quest_list_empty_message"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:visibility="gone"
-        tools:text="@string/main_quest_list_empty_message" />
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/pb_loading"

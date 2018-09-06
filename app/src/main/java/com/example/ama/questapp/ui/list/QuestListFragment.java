@@ -62,7 +62,6 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
     @Override
     public void onStart() {
         presenter.attachView(this);
-        presenter.loadData();
         super.onStart();
     }
 
