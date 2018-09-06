@@ -9,6 +9,11 @@ import com.example.ama.questapp.engine.UserQuestEngine;
 
 import javax.inject.Inject;
 
+/***
+ * IntentService to producing new random uncompleted quests.
+ * Starts by {@link ProduceTimeBroadcastReceiver}
+ */
+
 public class ProducingQuestIntentService extends IntentService {
 
     private final static int DEFAULT_COUNT_QUEST_TO_PRODUCE = 3;

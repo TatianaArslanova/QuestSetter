@@ -7,6 +7,10 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
+/***
+ * Class for access database from {@link com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl}
+ */
+
 public class QuestDatabaseProvider implements QuestProvider {
     private QuestDatabase database;
 

@@ -9,6 +9,11 @@ import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
 import io.reactivex.subjects.PublishSubject;
 
+/***
+ * View holder using additional layout elements towards {@link BaseQuestViewHolder}.
+ * Created for displaying quests marked as uncompleted
+ */
+
 class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
     private PublishSubject<UserQuest> onDoneClickListener;
 

@@ -14,6 +14,10 @@ import java.util.List;
 
 import io.reactivex.subjects.PublishSubject;
 
+/***
+ * Adapter for main quest recycler view
+ */
+
 public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHolder> {
 
     private static final int COMPLETED_QUEST = 0;

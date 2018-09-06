@@ -10,6 +10,10 @@ import com.example.ama.questapp.service.ProduceTimeBroadcastReceiver;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/***
+ * Class for planning events
+ */
+
 public class EventPlanner {
     private static final int PENDING_INTENT_REQUEST_CODE = 0;
     private static final int DEFAULT_HOURS = 7;
@@ -21,6 +25,11 @@ public class EventPlanner {
     public EventPlanner(Context appContext) {
         this.appContext = appContext;
     }
+
+    /***
+     * Sets daily repeatable event by AlarmManager, that sends intent to
+     * {@link ProduceTimeBroadcastReceiver} at the certain time.
+     */
 
     public void setAutoProduceDailyQuests() {
         Intent receiverIntent = new Intent(appContext, ProduceTimeBroadcastReceiver.class);

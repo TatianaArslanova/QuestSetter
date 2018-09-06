@@ -1,5 +1,10 @@
 package com.example.ama.questapp.ui.base;
 
+/***
+ * View model class
+ * @param <T> type of data that view uses
+ */
+
 public class ViewState<T> {
     private final boolean loading;
     private final T data;

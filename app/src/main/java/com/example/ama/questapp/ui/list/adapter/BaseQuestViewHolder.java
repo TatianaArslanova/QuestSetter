@@ -7,6 +7,10 @@ import android.widget.TextView;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 
+/***
+ * View holder uses primary layout elements. Created for displaying quests marked as completed
+ */
+
 class BaseQuestViewHolder extends RecyclerView.ViewHolder {
     BaseQuestViewHolder(View itemView) {
         super(itemView);
