@@ -35,7 +35,7 @@ public class ListModule {
 
     @Provides
     @MainQuestListScope
-    Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListInteractorImpl interactor) {
+    Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListInteractor interactor) {
         return new QuestMainListPresenter(interactor);
     }
 }
