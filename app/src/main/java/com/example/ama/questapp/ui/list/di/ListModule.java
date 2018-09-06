@@ -1,11 +1,13 @@
 package com.example.ama.questapp.ui.list.di;
 
-import com.example.ama.questapp.repo.provider.QuestDatabaseProvider;
 import com.example.ama.questapp.engine.UserQuestEngine;
 import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.repo.provider.QuestProvider;
+import com.example.ama.questapp.ui.base.Presenter;
 import com.example.ama.questapp.ui.base.ViewStateFactory;
+import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl;
+import com.example.ama.questapp.ui.list.mvp.MainQuestListView;
 import com.example.ama.questapp.ui.list.mvp.QuestMainListPresenter;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public class ListModule {
 
     @Provides
     @MainQuestListScope
-    QuestMainListInteractorImpl provideMainListInteractor(
+    QuestMainListInteractor provideMainListInteractor(
             QuestProvider questProvider,
             ViewStateFactory<List<PatternWithStatus>> stateFactory,
             UserQuestEngine userQuestEngine) {
@@ -33,7 +35,7 @@ public class ListModule {
 
     @Provides
     @MainQuestListScope
-    QuestMainListPresenter provideQuestMainListPresenter(QuestMainListInteractorImpl interactor) {
+    Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListInteractorImpl interactor) {
         return new QuestMainListPresenter(interactor);
     }
 }

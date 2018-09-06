@@ -4,7 +4,7 @@ import com.example.ama.questapp.repo.model.UserQuest;
 import com.example.ama.questapp.repo.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.ui.base.BasePresenter;
 import com.example.ama.questapp.ui.base.ViewState;
-import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractorImpl;
+import com.example.ama.questapp.ui.list.interactor.QuestMainListInteractor;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
 
-    private QuestMainListInteractorImpl interactor;
+    private QuestMainListInteractor interactor;
 
-    public QuestMainListPresenter(QuestMainListInteractorImpl interactor) {
+    public QuestMainListPresenter(QuestMainListInteractor interactor) {
         this.interactor = interactor;
     }
 
@@ -45,6 +45,7 @@ public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
     private void bindIntents() {
         disposable.add(
                 view.completeQuestIntent()
+                        .observeOn(Schedulers.io())
                         .subscribe(new Consumer<UserQuest>() {
                             @Override
                             public void accept(UserQuest userQuest) throws Exception {

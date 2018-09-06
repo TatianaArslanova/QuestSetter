@@ -14,7 +14,7 @@ import java.util.List;
 
 import io.reactivex.subjects.PublishSubject;
 
-public class MainQuestListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHolder> {
 
     private static final int COMPLETED_QUEST = 0;
     private static final int NOT_COMPLETED_QUEST = 1;
@@ -29,27 +29,23 @@ public class MainQuestListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseQuestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case COMPLETED_QUEST:
-                return new ViewHolderQuestCompleted(
-                        LayoutInflater.from(parent.getContext()).inflate(
-                                R.layout.main_quest_list_rv_item_completed,
-                                parent, false));
-        }
-        return new ViewHolderQuestNotCompleted(
-                LayoutInflater.from(parent.getContext()).inflate(
+            case NOT_COMPLETED_QUEST:
+                return new ViewHolderQuestNotCompleted(inflater.inflate(
                         R.layout.main_quest_list_rv_item_not_completed,
                         parent, false), onDoneClicklistener);
+            default:
+                return new BaseQuestViewHolder(inflater.inflate(
+                        R.layout.main_quest_list_rv_item_completed,
+                        parent, false));
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ViewHolderQuestCompleted) {
-            ((ViewHolderQuestCompleted) holder).bind(items.get(position));
-        } else if (holder instanceof ViewHolderQuestNotCompleted) {
-            ((ViewHolderQuestNotCompleted) holder).bind(items.get(position));
-        }
+    public void onBindViewHolder(@NonNull BaseQuestViewHolder holder, int position) {
+        holder.bind(items.get(position));
     }
 
     @Override

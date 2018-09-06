@@ -9,12 +9,8 @@ import com.example.ama.questapp.ui.base.ViewStateFactory;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
@@ -24,7 +20,7 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     public QuestMainListInteractorImpl(QuestProvider questProvider,
                                        ViewStateFactory<List<PatternWithStatus>> stateFactory,
-                                       final UserQuestEngine userQuestEngine) {
+                                       UserQuestEngine userQuestEngine) {
         this.questProvider = questProvider;
         this.stateFactory = stateFactory;
         this.userQuestEngine = userQuestEngine;
@@ -32,14 +28,7 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     @Override
     public void completeQuest(final UserQuest userQuest) {
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                userQuestEngine.incrementQuestProgress(userQuest);
-            }
-        })
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+        userQuestEngine.incrementQuestProgress(userQuest);
     }
 
     @Override

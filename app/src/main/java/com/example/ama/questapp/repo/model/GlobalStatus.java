@@ -6,9 +6,9 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "globalstatuses",
         foreignKeys = @ForeignKey(
-        entity = QuestPattern.class,
-        parentColumns = "questId",
-        childColumns = "patternId"))
+                entity = QuestPattern.class,
+                parentColumns = "questId",
+                childColumns = "patternId"))
 public class GlobalStatus {
 
     @PrimaryKey(autoGenerate = true)
