@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+/***
+ * Class for choosing quest patterns for new daily quest creation.
+ * It does not provide using from UI-thread.
+ * You should start another thread to call any method from this class.
+ */
+
 public class DailyUserTaskProducer {
 
     private EngineQuestProvider questProvider;
@@ -16,6 +22,18 @@ public class DailyUserTaskProducer {
     public DailyUserTaskProducer(EngineQuestProvider questProvider) {
         this.questProvider = questProvider;
     }
+
+    /***
+     * Choose {@link QuestPattern} values from database,
+     * that not used yet or was completed before.
+     * It mustn't be called from UI-thread
+     * @param maxCount max count user quest to create.
+     *                 Final amount of new quests can be less,
+     *                 but never more this value
+     * @return list of quest patterns free to creating new user quests
+     * @see com.example.ama.questapp.repo.model.UserQuest
+     * @see QuestPattern
+     */
 
     public List<QuestPattern> produceUserQuests(final int maxCount) {
         return getPatternList(maxCount);

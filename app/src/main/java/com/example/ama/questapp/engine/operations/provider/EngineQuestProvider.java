@@ -6,6 +6,10 @@ import com.example.ama.questapp.repo.model.UserQuest;
 
 import java.util.List;
 
+/***
+ * Interface defines operations with database for {@link com.example.ama.questapp.engine.UserQuestEngine}
+ */
+
 public interface EngineQuestProvider {
     void addQuestsWithGlobalStatuses(List<UserQuest> userQuests,
                                      List<GlobalStatus> globalStatuses);

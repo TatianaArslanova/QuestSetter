@@ -8,6 +8,11 @@ import com.example.ama.questapp.repo.model.UserQuest;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * Class for creating user quests from quest patterns. It does not provide using from UI-thread.
+ * You should start another thread to call any method from this class.
+ */
+
 public class UserQuestCreator {
     private static final int AUTO_ID = 0;
     private static final int START_PROGRESS = 0;
@@ -21,7 +26,17 @@ public class UserQuestCreator {
         this.questProvider = questProvider;
     }
 
-    public void createUserQuests(final List<QuestPattern> patterns) {
+    /***
+     * Creates user quests from quest patterns with updating them global status
+     * or creating if it is not exists. User Quests will be added to the database automatically.
+     * It mustn't be called from UI-thread
+     * @param patterns list of quest patterns to create user quests
+     * @see QuestPattern
+     * @see UserQuest
+     * @see GlobalStatus
+     */
+
+    public void createUserQuests(List<QuestPattern> patterns) {
         List<UserQuest> userQuests = patternsToUserQuests(patterns);
         questProvider.addQuestsWithGlobalStatuses(
                 userQuests,

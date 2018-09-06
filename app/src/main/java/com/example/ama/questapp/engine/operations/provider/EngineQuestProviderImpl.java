@@ -7,6 +7,11 @@ import com.example.ama.questapp.repo.model.UserQuest;
 
 import java.util.List;
 
+/***
+ * Implementation of {@link EngineQuestProvider} that defines operations
+ * with database for {@link com.example.ama.questapp.engine.UserQuestEngine}
+ */
+
 public class EngineQuestProviderImpl implements EngineQuestProvider {
     private QuestDatabase database;
 
