@@ -3,11 +3,11 @@ package com.example.ama.questapp.di;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
-import com.example.ama.questapp.engine.operations.provider.EngineQuestProviderImpl;
-import com.example.ama.questapp.repo.db.QuestDatabase;
-import com.example.ama.questapp.repo.provider.QuestDatabaseProvider;
-import com.example.ama.questapp.repo.provider.QuestProvider;
+import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.data.repo.provider.EngineQuestProviderImpl;
+import com.example.ama.questapp.data.db.QuestDatabase;
+import com.example.ama.questapp.data.repo.provider.QuestDatabaseProvider;
+import com.example.ama.questapp.data.repo.provider.QuestProvider;
 
 import javax.inject.Singleton;
 

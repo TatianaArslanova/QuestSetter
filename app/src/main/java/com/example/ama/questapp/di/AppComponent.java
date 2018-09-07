@@ -1,8 +1,8 @@
 package com.example.ama.questapp.di;
 
 import com.example.ama.questapp.QuestApp;
-import com.example.ama.questapp.service.ProducingQuestIntentService;
-import com.example.ama.questapp.ui.list.di.MainQuestListComponent;
+import com.example.ama.questapp.domain.service.ProducingQuestIntentService;
+import com.example.ama.questapp.presentation.list.di.MainQuestListComponent;
 
 import javax.inject.Singleton;
 

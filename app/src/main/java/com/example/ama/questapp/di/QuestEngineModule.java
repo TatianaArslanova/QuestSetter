@@ -1,10 +1,10 @@
 package com.example.ama.questapp.di;
 
-import com.example.ama.questapp.engine.UserQuestEngine;
-import com.example.ama.questapp.engine.operations.UserQuestCreator;
-import com.example.ama.questapp.engine.operations.UserQuestUpdater;
-import com.example.ama.questapp.engine.operations.provider.EngineQuestProvider;
-import com.example.ama.questapp.engine.producer.DailyUserTaskProducer;
+import com.example.ama.questapp.domain.engine.UserQuestEngine;
+import com.example.ama.questapp.domain.engine.operations.UserQuestCreator;
+import com.example.ama.questapp.domain.engine.operations.UserQuestUpdater;
+import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.domain.engine.producer.DailyUserTaskProducer;
 
 import javax.inject.Singleton;
 

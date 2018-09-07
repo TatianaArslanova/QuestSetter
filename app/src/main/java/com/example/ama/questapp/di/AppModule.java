@@ -2,8 +2,6 @@ package com.example.ama.questapp.di;
 
 import android.content.Context;
 
-import com.example.ama.questapp.repo.event.EventPlanner;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -23,9 +21,4 @@ public class AppModule {
         return app;
     }
 
-    @Provides
-    @Singleton
-    EventPlanner provideEventPlanner() {
-        return new EventPlanner(app);
-    }
 }
