@@ -22,9 +22,8 @@ public class ListModule {
     @MainQuestListScope
     QuestMainListInteractor provideMainListInteractor(
             QuestProvider questProvider,
-            ViewStateFactory<List<PatternWithStatus>> stateFactory,
             UserQuestEngine userQuestEngine) {
-        return new QuestMainListInteractorImpl(questProvider, stateFactory, userQuestEngine);
+        return new QuestMainListInteractorImpl(questProvider, userQuestEngine);
     }
 
     @Provides
@@ -35,7 +34,8 @@ public class ListModule {
 
     @Provides
     @MainQuestListScope
-    Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListInteractor interactor) {
-        return new QuestMainListPresenter(interactor);
+    Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListInteractor interactor,
+                                                               ViewStateFactory<List<PatternWithStatus>> stateFactory) {
+        return new QuestMainListPresenter(interactor, stateFactory);
     }
 }

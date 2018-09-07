@@ -25,12 +25,8 @@ class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
     @Override
     void bind(final PatternWithStatus item) {
         super.bind(item);
-        itemView.findViewById(R.id.btn_done).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDoneClickListener.onNext(item.getUserQuest());
-            }
-        });
+        itemView.findViewById(R.id.btn_done)
+                .setOnClickListener(v -> onDoneClickListener.onNext(item.getUserQuest()));
         ProgressBar progressBar = itemView.findViewById(R.id.pb_quest_progress);
         progressBar.setMax(item.getUserQuest().getTaskTarget());
         progressBar.setProgress(item.getUserQuest().getTaskProgress());

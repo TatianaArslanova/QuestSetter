@@ -11,7 +11,7 @@ import io.reactivex.Flowable;
 public interface QuestMainListInteractor {
     void completeQuest(UserQuest userQuest);
 
-    Flowable<ViewState<List<PatternWithStatus>>> loadAllUserQuests();
+    Flowable<List<PatternWithStatus>> loadAllUserQuests();
 }
 
 

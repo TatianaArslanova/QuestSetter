@@ -16,7 +16,7 @@ public abstract class BasePresenter<T extends QuestView> implements Presenter<T>
     public void detachView() {
         view = null;
         if (disposable != null) {
-            disposable.clear();
+            disposable.dispose();
             disposable = null;
         }
     }
