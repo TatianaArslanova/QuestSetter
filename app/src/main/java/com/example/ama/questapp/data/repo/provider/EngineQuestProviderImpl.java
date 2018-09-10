@@ -7,14 +7,19 @@ import com.example.ama.questapp.data.db.model.UserQuest;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /***
  * Implementation of {@link EngineQuestProvider} that defines operations
  * with database for {@link com.example.ama.questapp.domain.engine.UserQuestEngine}
  */
 
+@Singleton
 public class EngineQuestProviderImpl implements EngineQuestProvider {
     private QuestDatabase database;
 
+    @Inject
     public EngineQuestProviderImpl(QuestDatabase database) {
         this.database = database;
     }

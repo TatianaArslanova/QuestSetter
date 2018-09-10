@@ -9,16 +9,21 @@ import com.example.ama.questapp.presentation.base.ViewStateFactory;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.Flowable;
 import io.reactivex.Scheduler;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+@Singleton
 public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     private QuestProvider questProvider;
     private UserQuestEngine userQuestEngine;
 
+    @Inject
     public QuestMainListInteractorImpl(QuestProvider questProvider,
                                        UserQuestEngine userQuestEngine) {
         this.questProvider = questProvider;
