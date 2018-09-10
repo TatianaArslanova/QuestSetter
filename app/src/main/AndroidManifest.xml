@@ -17,8 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".domain.service.ProducingQuestIntentService" />
-        <receiver android:name=".domain.service.ProduceTimeBroadcastReceiver"/>
     </application>
 
 </manifest>
