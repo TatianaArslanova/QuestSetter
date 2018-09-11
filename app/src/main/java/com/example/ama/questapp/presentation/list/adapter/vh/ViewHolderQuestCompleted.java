@@ -1,6 +1,5 @@
-package com.example.ama.questapp.presentation.list.adapter;
+package com.example.ama.questapp.presentation.list.adapter.vh;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,12 +10,13 @@ import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
  * View holder uses primary layout elements. Created for displaying quests marked as completed
  */
 
-class BaseQuestViewHolder extends RecyclerView.ViewHolder {
-    BaseQuestViewHolder(View itemView) {
+public class ViewHolderQuestCompleted extends BaseQuestViewHolder {
+
+    ViewHolderQuestCompleted(View itemView) {
         super(itemView);
     }
 
-    void bind(PatternWithStatus item) {
+    public void bind(PatternWithStatus item) {
         ((TextView) itemView.findViewById(R.id.tv_quest_name))
                 .setText(item.getPattern().getQuestName());
         ((TextView) itemView.findViewById(R.id.tv_quest_description))

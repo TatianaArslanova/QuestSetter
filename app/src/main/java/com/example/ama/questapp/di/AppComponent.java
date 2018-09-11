@@ -10,7 +10,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, DbModule.class, QuestEngineModule.class, CurrentQuestModule.class})
 public interface AppComponent {
-    MainQuestListComponent mainQuestListComponent();
+    MainQuestListComponent.Builder mainQuestListComponent();
 
     void inject(QuestApp app);
 }

@@ -1,27 +1,23 @@
 package com.example.ama.questapp.presentation.list.di;
 
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
-import com.example.ama.questapp.presentation.base.Presenter;
-import com.example.ama.questapp.presentation.base.ViewStateFactory;
-import com.example.ama.questapp.presentation.list.mvp.MainQuestListView;
-import com.example.ama.questapp.presentation.list.mvp.QuestMainListPresenter;
+import com.example.ama.questapp.presentation.list.QuestListFragment;
+import com.example.ama.questapp.presentation.list.adapter.OnCompleteQuestClickListener;
 
-import java.util.List;
-
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public abstract class ListModule {
+public class ListModule {
+    private QuestListFragment fragment;
+
+    public ListModule(QuestListFragment fragment) {
+        this.fragment = fragment;
+    }
 
     @Provides
     @MainQuestListScope
-    static ViewStateFactory<List<PatternWithStatus>> provideViewStateFactory() {
-        return new ViewStateFactory<>();
+    OnCompleteQuestClickListener provideListener() {
+        return fragment::tryToCompleteQuest;
     }
 
-    @Binds
-    @MainQuestListScope
-    abstract Presenter<MainQuestListView> provideQuestMainListPresenter(QuestMainListPresenter presenter);
 }

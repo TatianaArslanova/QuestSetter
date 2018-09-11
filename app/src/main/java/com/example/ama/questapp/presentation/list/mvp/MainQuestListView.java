@@ -7,10 +7,8 @@ import com.example.ama.questapp.presentation.base.ViewState;
 
 import java.util.List;
 
-import io.reactivex.subjects.PublishSubject;
-
 public interface MainQuestListView extends QuestView {
     void render(ViewState<List<PatternWithStatus>> viewState);
 
-    PublishSubject<UserQuest> completeQuestIntent();
+    void tryToCompleteQuest(UserQuest userQuest);
 }

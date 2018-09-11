@@ -17,25 +17,25 @@ import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.data.db.model.UserQuest;
 import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
-import com.example.ama.questapp.presentation.base.Presenter;
 import com.example.ama.questapp.presentation.base.ViewState;
 import com.example.ama.questapp.presentation.list.adapter.MainQuestListAdapter;
+import com.example.ama.questapp.presentation.list.di.ListModule;
+import com.example.ama.questapp.presentation.list.mvp.MainQuestListPresenter;
 import com.example.ama.questapp.presentation.list.mvp.MainQuestListView;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.subjects.PublishSubject;
-
 public class QuestListFragment extends Fragment implements MainQuestListView {
     @Inject
-    Presenter<MainQuestListView> presenter;
+    MainQuestListPresenter<MainQuestListView> presenter;
+    @Inject
+    MainQuestListAdapter adapter;
 
     private ProgressBar progressBar;
     private RecyclerView rvMain;
     private TextView tvEmptyMessage;
-    private MainQuestListAdapter adapter;
 
     public static QuestListFragment newInstance() {
         return new QuestListFragment();
@@ -43,7 +43,11 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        QuestApp.getInstance().getComponent().mainQuestListComponent().inject(this);
+        QuestApp.getInstance().getComponent()
+                .mainQuestListComponent()
+                .ListModule(new ListModule(this))
+                .build()
+                .inject(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -75,7 +79,6 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
         progressBar = view.findViewById(R.id.pb_loading);
         tvEmptyMessage = view.findViewById(R.id.tv_empty_message);
         rvMain = view.findViewById(R.id.rv_main_quest_list);
-        adapter = new MainQuestListAdapter();
         rvMain.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMain.setAdapter(adapter);
     }
@@ -89,8 +92,8 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
     }
 
     @Override
-    public PublishSubject<UserQuest> completeQuestIntent() {
-        return adapter.getOnDoneClicklistener();
+    public void tryToCompleteQuest(UserQuest userQuest) {
+        presenter.tryToCompleteQuest(userQuest);
     }
 
     private void loading(boolean loading) {

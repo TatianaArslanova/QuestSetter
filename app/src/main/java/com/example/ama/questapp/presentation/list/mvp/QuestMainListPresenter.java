@@ -1,5 +1,6 @@
 package com.example.ama.questapp.presentation.list.mvp;
 
+import com.example.ama.questapp.data.db.model.UserQuest;
 import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.domain.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.presentation.base.BasePresenter;
@@ -10,11 +11,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @MainQuestListScope
-public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
+public class QuestMainListPresenter
+        extends BasePresenter<MainQuestListView>
+        implements MainQuestListPresenter<MainQuestListView> {
 
     private QuestMainListInteractor interactor;
     private ViewStateFactory<List<PatternWithStatus>> stateFactory;
@@ -29,7 +33,6 @@ public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
     public void attachView(MainQuestListView view) {
         super.attachView(view);
         loadData();
-        bindIntents();
     }
 
     private void loadData() {
@@ -51,12 +54,12 @@ public class QuestMainListPresenter extends BasePresenter<MainQuestListView> {
                 }));
     }
 
-    private void bindIntents() {
-        disposable.add(
-                view.completeQuestIntent()
-                        .observeOn(Schedulers.io())
-                        .subscribe(userQuest ->
-                                interactor.completeQuest(userQuest))
-        );
+    @Override
+    public void tryToCompleteQuest(UserQuest userQuest) {
+        disposable.add(Completable.fromAction(
+                () -> interactor.completeQuest(userQuest)
+        )
+                .subscribeOn(Schedulers.io())
+                .subscribe());
     }
 }
