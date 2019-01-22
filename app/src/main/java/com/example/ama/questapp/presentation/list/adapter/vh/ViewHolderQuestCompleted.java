@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 
 /***
  * View holder uses primary layout elements. Created for displaying quests marked as completed
@@ -16,7 +16,7 @@ public class ViewHolderQuestCompleted extends BaseQuestViewHolder {
         super(itemView);
     }
 
-    public void bind(PatternWithStatus item) {
+    public void bind(UserTaskWithPattern item) {
         ((TextView) itemView.findViewById(R.id.tv_name))
                 .setText(item.getPattern().getQuestName());
         ((TextView) itemView.findViewById(R.id.tv_description))

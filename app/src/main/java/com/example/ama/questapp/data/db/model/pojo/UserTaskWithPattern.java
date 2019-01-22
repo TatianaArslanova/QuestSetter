@@ -5,13 +5,13 @@ import android.arch.persistence.room.Embedded;
 import com.example.ama.questapp.data.db.model.QuestPattern;
 import com.example.ama.questapp.data.db.model.UserTask;
 
-public class PatternWithStatus {
-
-    @Embedded
-    private QuestPattern pattern;
+public class UserTaskWithPattern {
 
     @Embedded
     private UserTask userTask;
+
+    @Embedded
+    private QuestPattern pattern;
 
     public UserTask getUserTask() {
         return userTask;

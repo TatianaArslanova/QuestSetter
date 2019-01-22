@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.list.adapter.vh.BaseQuestViewHolder;
 import com.example.ama.questapp.presentation.list.adapter.vh.QuestListViewHolderFactory;
 import com.example.ama.questapp.presentation.list.di.MainQuestListScope;
@@ -20,7 +20,7 @@ import javax.inject.Inject;
 @MainQuestListScope
 public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHolder> {
 
-    private List<PatternWithStatus> items = new ArrayList<>();
+    private List<UserTaskWithPattern> items = new ArrayList<>();
     private QuestListViewHolderFactory factory;
 
     @Inject
@@ -51,7 +51,7 @@ public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHold
         return items.size();
     }
 
-    public void setItems(List<PatternWithStatus> items) {
+    public void setItems(List<UserTaskWithPattern> items) {
         this.items.clear();
         this.items.addAll(items);
         notifyDataSetChanged();

@@ -1,7 +1,7 @@
 package com.example.ama.questapp.domain.interactor;
 
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.data.repo.provider.QuestProvider;
 import com.example.ama.questapp.domain.engine.UserQuestEngine;
 
@@ -32,8 +32,8 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
     }
 
     @Override
-    public Flowable<List<PatternWithStatus>> loadAllUserQuests() {
-        return questProvider.loadAllUserTasks()
+    public Flowable<List<UserTaskWithPattern>> loadAllUserQuests() {
+        return questProvider.getAllUserTasksWithPattern()
                 .subscribeOn(Schedulers.io());
     }
 }

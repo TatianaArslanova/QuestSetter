@@ -4,7 +4,7 @@ package com.example.ama.questapp.data.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.example.ama.questapp.data.db.dao.PatternWithStatusesDao;
+import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
 import com.example.ama.questapp.data.db.dao.QuestDao;
 import com.example.ama.questapp.data.db.dao.UserQuestDao;
 import com.example.ama.questapp.data.db.model.QuestPattern;
@@ -16,5 +16,5 @@ public abstract class QuestDatabase extends RoomDatabase {
 
     public abstract UserQuestDao getUserQuestDao();
 
-    public abstract PatternWithStatusesDao getPatternWithStatusesDao();
+    public abstract UserTaskWithPatternDao getUserTaskWithPatternDao();
 }

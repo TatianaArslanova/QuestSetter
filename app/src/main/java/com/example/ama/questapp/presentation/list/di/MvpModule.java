@@ -1,6 +1,6 @@
 package com.example.ama.questapp.presentation.list.di;
 
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.base.ViewStateFactory;
 import com.example.ama.questapp.presentation.list.mvp.MainQuestListPresenter;
 import com.example.ama.questapp.presentation.list.mvp.MainQuestListView;
@@ -17,7 +17,7 @@ public abstract class MvpModule {
 
     @Provides
     @MainQuestListScope
-    static ViewStateFactory<List<PatternWithStatus>> provideViewStateFactory() {
+    static ViewStateFactory<List<UserTaskWithPattern>> provideViewStateFactory() {
         return new ViewStateFactory<>();
     }
 

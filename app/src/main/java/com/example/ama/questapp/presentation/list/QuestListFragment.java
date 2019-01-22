@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.base.ViewState;
 import com.example.ama.questapp.presentation.list.adapter.MainQuestListAdapter;
 import com.example.ama.questapp.presentation.list.di.ListModule;
@@ -84,7 +84,7 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
     }
 
     @Override
-    public void render(ViewState<List<PatternWithStatus>> viewState) {
+    public void render(ViewState<List<UserTaskWithPattern>> viewState) {
         loading(viewState.isLoading());
         error(viewState.isError());
         data(viewState.getData());
@@ -106,7 +106,7 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
         if (show) Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
     }
 
-    private void data(List<PatternWithStatus> data) {
+    private void data(List<UserTaskWithPattern> data) {
         if (data != null) adapter.setItems(data);
     }
 

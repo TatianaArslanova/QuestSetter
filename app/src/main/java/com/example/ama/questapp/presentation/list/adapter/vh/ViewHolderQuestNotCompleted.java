@@ -6,7 +6,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.list.adapter.OnCompleteQuestClickListener;
 
 /***
@@ -23,7 +23,7 @@ public class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
     }
 
     @Override
-    public void bind(final PatternWithStatus item) {
+    public void bind(final UserTaskWithPattern item) {
         ((TextView) itemView.findViewById(R.id.tv_name))
                 .setText(item.getPattern().getQuestName());
         ((TextView) itemView.findViewById(R.id.tv_description))

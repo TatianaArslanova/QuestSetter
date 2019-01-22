@@ -35,8 +35,8 @@ public class UserTaskCreator {
      */
 
     public void createUserQuests(List<QuestPattern> patterns) {
-        List<UserTask> userQuests = patternsToUserQuests(patterns);
-        questProvider.addUserTasks(userQuests);
+        List<UserTask> userTasks = patternsToUserQuests(patterns);
+        questProvider.addUserTasks(userTasks);
     }
 
     private int calcTargetCount(QuestPattern questPattern) {

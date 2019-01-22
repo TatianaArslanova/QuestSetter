@@ -3,7 +3,7 @@ package com.example.ama.questapp.presentation.list.adapter.vh;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 
 
 public abstract class BaseQuestViewHolder extends RecyclerView.ViewHolder {
@@ -12,5 +12,5 @@ public abstract class BaseQuestViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public abstract void bind(PatternWithStatus item);
+    public abstract void bind(UserTaskWithPattern item);
 }

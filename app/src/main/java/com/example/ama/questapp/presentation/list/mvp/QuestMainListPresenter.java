@@ -1,7 +1,7 @@
 package com.example.ama.questapp.presentation.list.mvp;
 
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
+import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.domain.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.presentation.base.BasePresenter;
 import com.example.ama.questapp.presentation.base.ViewStateFactory;
@@ -21,10 +21,10 @@ public class QuestMainListPresenter
         implements MainQuestListPresenter<MainQuestListView> {
 
     private QuestMainListInteractor interactor;
-    private ViewStateFactory<List<PatternWithStatus>> stateFactory;
+    private ViewStateFactory<List<UserTaskWithPattern>> stateFactory;
 
     @Inject
-    public QuestMainListPresenter(QuestMainListInteractor interactor, ViewStateFactory<List<PatternWithStatus>> stateFactory) {
+    public QuestMainListPresenter(QuestMainListInteractor interactor, ViewStateFactory<List<UserTaskWithPattern>> stateFactory) {
         this.interactor = interactor;
         this.stateFactory = stateFactory;
     }
