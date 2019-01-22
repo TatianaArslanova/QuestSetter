@@ -10,7 +10,7 @@ import com.example.ama.questapp.data.db.model.UserTask;
 import java.util.List;
 
 @Dao
-public interface UserQuestDao {
+public interface UserTaskDao {
 
     @Insert
     void insertAllUserTasks(List<UserTask> userTasks);

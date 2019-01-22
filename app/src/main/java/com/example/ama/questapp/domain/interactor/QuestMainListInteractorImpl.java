@@ -2,7 +2,7 @@ package com.example.ama.questapp.domain.interactor;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.data.repo.provider.QuestProvider;
+import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
 import com.example.ama.questapp.domain.engine.UserQuestEngine;
 
 import java.util.List;
@@ -11,18 +11,17 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
-    private QuestProvider questProvider;
+    private UserTaskProvider userTaskProvider;
     private UserQuestEngine userQuestEngine;
 
     @Inject
-    public QuestMainListInteractorImpl(QuestProvider questProvider,
+    public QuestMainListInteractorImpl(UserTaskProvider questProvider,
                                        UserQuestEngine userQuestEngine) {
-        this.questProvider = questProvider;
+        this.userTaskProvider = questProvider;
         this.userQuestEngine = userQuestEngine;
     }
 
@@ -33,7 +32,6 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     @Override
     public Flowable<List<UserTaskWithPattern>> loadAllUserQuests() {
-        return questProvider.getAllUserTasksWithPattern()
-                .subscribeOn(Schedulers.io());
+        return userTaskProvider.getAllUserTasksWithPattern();
     }
 }

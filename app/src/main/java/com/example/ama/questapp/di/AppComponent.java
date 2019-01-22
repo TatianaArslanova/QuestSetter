@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AppModule.class, DbModule.class, QuestEngineModule.class, CurrentQuestModule.class})
+@Component(modules = {AppModule.class, DbModule.class, CurrentQuestModule.class})
 public interface AppComponent {
     MainQuestListComponent.Builder mainQuestListComponent();
 

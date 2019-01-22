@@ -2,7 +2,7 @@ package com.example.ama.questapp.domain.engine.producer;
 
 import com.example.ama.questapp.data.db.model.QuestPattern;
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.data.repo.provider.QuestPatternsProvider;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,17 +10,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /***
  * Class for choosing quest patterns for new daily quest creation.
  * It does not provide using from UI-thread.
  * You should start another thread to call any method from this class.
  */
 
+@Singleton
 public class DailyUserTaskProducer {
 
-    private EngineQuestProvider questProvider;
+    private QuestPatternsProvider questProvider;
 
-    public DailyUserTaskProducer(EngineQuestProvider questProvider) {
+    @Inject
+    public DailyUserTaskProducer(QuestPatternsProvider questProvider) {
         this.questProvider = questProvider;
     }
 

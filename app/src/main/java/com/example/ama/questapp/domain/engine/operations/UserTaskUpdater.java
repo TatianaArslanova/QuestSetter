@@ -1,19 +1,24 @@
 package com.example.ama.questapp.domain.engine.operations;
 
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /***
  * Class for updating existing user quests. It does not provide using from UI-thread.
  * You should start another thread to call any method from this class.
  */
 
+@Singleton
 public class UserTaskUpdater {
     private static final int PROGRESS_INCREMENT = 1;
-    private EngineQuestProvider questProvider;
+    private UserTaskProvider userTaskProvider;
 
-    public UserTaskUpdater(EngineQuestProvider questProvider) {
-        this.questProvider = questProvider;
+    @Inject
+    public UserTaskUpdater(UserTaskProvider userTaskProvider) {
+        this.userTaskProvider = userTaskProvider;
     }
 
     /***
@@ -27,7 +32,7 @@ public class UserTaskUpdater {
      */
 
     public void onIncrementUserQuestProgress(final UserTask userTask) {
-        questProvider.updateUserTask(incrementQuestProgress(userTask));
+        userTaskProvider.updateUserTask(incrementQuestProgress(userTask));
     }
 
     private UserTask incrementQuestProgress(UserTask userTask) {

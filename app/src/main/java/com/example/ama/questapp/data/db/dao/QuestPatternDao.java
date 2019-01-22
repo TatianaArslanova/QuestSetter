@@ -11,7 +11,7 @@ import java.util.List;
 import io.reactivex.Single;
 
 @Dao
-public interface QuestDao {
+public interface QuestPatternDao {
 
     @Insert
     void insertAllQuestPatterns(List<QuestPattern> patterns);

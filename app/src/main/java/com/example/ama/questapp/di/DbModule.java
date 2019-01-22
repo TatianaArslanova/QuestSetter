@@ -4,10 +4,13 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.example.ama.questapp.data.db.QuestDatabase;
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
-import com.example.ama.questapp.data.repo.provider.EngineQuestProviderImpl;
-import com.example.ama.questapp.data.repo.provider.QuestDatabaseProvider;
-import com.example.ama.questapp.data.repo.provider.QuestProvider;
+import com.example.ama.questapp.data.db.dao.QuestPatternDao;
+import com.example.ama.questapp.data.db.dao.UserTaskDao;
+import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
+import com.example.ama.questapp.data.repo.provider.QuestPatternsProvider;
+import com.example.ama.questapp.data.repo.provider.QuestPatternsProviderImpl;
+import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
+import com.example.ama.questapp.data.repo.provider.UserTaskProviderImpl;
 
 import javax.inject.Singleton;
 
@@ -25,11 +28,29 @@ public abstract class DbModule {
         return Room.databaseBuilder(context, QuestDatabase.class, DB_NAME).build();
     }
 
-    @Binds
+    @Provides
     @Singleton
-    abstract QuestProvider provideQuestProvider(QuestDatabaseProvider questDatabaseProvider);
+    static QuestPatternDao provideQuestPatternDao(QuestDatabase database) {
+        return database.getQuestPatternDao();
+    }
+
+    @Provides
+    @Singleton
+    static UserTaskDao provideUserTaskDao(QuestDatabase database) {
+        return database.getUserTaskDao();
+    }
+
+    @Provides
+    @Singleton
+    static UserTaskWithPatternDao provadeUserTaskWithPatternDao(QuestDatabase database) {
+        return database.getUserTaskWithPatternDao();
+    }
 
     @Binds
     @Singleton
-    abstract EngineQuestProvider provideEngineQuestProvider(EngineQuestProviderImpl engineQuestProvider);
+    abstract UserTaskProvider provideUserTaskProvider(UserTaskProviderImpl questDatabaseProvider);
+
+    @Binds
+    @Singleton
+    abstract QuestPatternsProvider provideQuestPatternsProvider(QuestPatternsProviderImpl engineQuestProvider);
 }

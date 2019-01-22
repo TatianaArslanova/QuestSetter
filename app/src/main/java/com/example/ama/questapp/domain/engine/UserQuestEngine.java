@@ -5,16 +5,21 @@ import com.example.ama.questapp.domain.engine.operations.UserTaskCreator;
 import com.example.ama.questapp.domain.engine.operations.UserTaskUpdater;
 import com.example.ama.questapp.domain.engine.producer.DailyUserTaskProducer;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /***
  * Class with logic of managing quests. It does not provide using from UI-thread.
  * You should start another thread to call any method from this class.
  */
 
+@Singleton
 public class UserQuestEngine {
     private DailyUserTaskProducer producer;
     private UserTaskCreator creator;
     private UserTaskUpdater updater;
 
+    @Inject
     public UserQuestEngine(DailyUserTaskProducer producer, UserTaskCreator creator, UserTaskUpdater updater) {
         this.producer = producer;
         this.creator = creator;

@@ -2,16 +2,20 @@ package com.example.ama.questapp.domain.engine.operations;
 
 import com.example.ama.questapp.data.db.model.QuestPattern;
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /***
  * Class for creating user quests from quest patterns. It does not provide using from UI-thread.
  * You should start another thread to call any method from this class.
  */
 
+@Singleton
 public class UserTaskCreator {
     private static final int AUTO_ID = 0;
     private static final int START_PROGRESS = 0;
@@ -19,10 +23,11 @@ public class UserTaskCreator {
     private static final int ONCE_DEFAULT_TARGET = 1;
     private static final int COUNT_DEFAULT_TARGET = 3;
 
-    private EngineQuestProvider questProvider;
+    private UserTaskProvider userTaskProvider;
 
-    public UserTaskCreator(EngineQuestProvider questProvider) {
-        this.questProvider = questProvider;
+    @Inject
+    public UserTaskCreator(UserTaskProvider userTaskProvider) {
+        this.userTaskProvider = userTaskProvider;
     }
 
     /***
@@ -36,7 +41,7 @@ public class UserTaskCreator {
 
     public void createUserQuests(List<QuestPattern> patterns) {
         List<UserTask> userTasks = patternsToUserQuests(patterns);
-        questProvider.addUserTasks(userTasks);
+        userTaskProvider.addUserTasks(userTasks);
     }
 
     private int calcTargetCount(QuestPattern questPattern) {
