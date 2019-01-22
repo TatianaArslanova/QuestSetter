@@ -1,6 +1,7 @@
 package com.example.ama.questapp.presentation.list.adapter.vh;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,18 +24,26 @@ public class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
 
     @Override
     public void bind(final PatternWithStatus item) {
-        ((TextView) itemView.findViewById(R.id.tv_quest_name))
+        ((TextView) itemView.findViewById(R.id.tv_name))
                 .setText(item.getPattern().getQuestName());
-        ((TextView) itemView.findViewById(R.id.tv_quest_description))
+        ((TextView) itemView.findViewById(R.id.tv_description))
                 .setText(item.getPattern().getQuestDescription());
-        ((TextView) itemView.findViewById(R.id.tv_target_progress))
+        ((TextView) itemView.findViewById(R.id.tv_result))
                 .setText(itemView.getResources().getString(
                         R.string.main_quest_list_progress_target_counter,
                         item.getUserQuest().getTaskProgress(),
                         item.getUserQuest().getTaskTarget()));
-        itemView.findViewById(R.id.btn_done)
-                .setOnClickListener(v -> listener.tryToCompleteQuest(item.getUserQuest()));
-        ProgressBar progressBar = itemView.findViewById(R.id.pb_quest_progress);
+        ImageButton iconBtn = itemView.findViewById(R.id.ib_icon);
+        iconBtn.setOnClickListener(v -> listener.tryToCompleteQuest(item.getUserQuest()));
+        switch (item.getPattern().getQuestType()) {
+            case ONCE:
+                iconBtn.setImageResource(R.drawable.ic_quest_one_shot);
+                break;
+            case COUNT:
+                iconBtn.setImageResource(R.drawable.ic_quest_counter);
+                break;
+        }
+        ProgressBar progressBar = itemView.findViewById(R.id.pb_progress);
         progressBar.setMax(item.getUserQuest().getTaskTarget());
         progressBar.setProgress(item.getUserQuest().getTaskProgress());
     }

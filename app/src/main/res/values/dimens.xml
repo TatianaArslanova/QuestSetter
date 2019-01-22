@@ -2,4 +2,5 @@
 <resources>
     <dimen name="circle_progress_bar_size">100dp</dimen>
     <dimen name="rv_main_quest_list_padding">15dp</dimen>
+    <dimen name="default_card_view_margin">16dp</dimen>
 </resources>

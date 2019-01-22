@@ -36,7 +36,7 @@ public class QuestListViewHolderFactory {
     private BaseQuestViewHolder createCompletedVH(ViewGroup parent,
                                                   LayoutInflater inflater) {
         return new ViewHolderQuestCompleted(inflater.inflate(
-                R.layout.main_quest_list_rv_item_completed,
+                R.layout.li_quest_completed,
                 parent, false));
     }
 
@@ -44,7 +44,7 @@ public class QuestListViewHolderFactory {
                                                              LayoutInflater inflater,
                                                              OnCompleteQuestClickListener listener) {
         return new ViewHolderQuestNotCompleted(inflater.inflate(
-                R.layout.main_quest_list_rv_item_not_completed,
+                R.layout.li_quest_new,
                 parent, false), listener);
     }
 }

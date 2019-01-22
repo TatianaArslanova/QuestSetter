@@ -17,11 +17,11 @@ public class ViewHolderQuestCompleted extends BaseQuestViewHolder {
     }
 
     public void bind(PatternWithStatus item) {
-        ((TextView) itemView.findViewById(R.id.tv_quest_name))
+        ((TextView) itemView.findViewById(R.id.tv_name))
                 .setText(item.getPattern().getQuestName());
-        ((TextView) itemView.findViewById(R.id.tv_quest_description))
+        ((TextView) itemView.findViewById(R.id.tv_description))
                 .setText(item.getPattern().getQuestDescription());
-        ((TextView) itemView.findViewById(R.id.tv_target_progress))
+        ((TextView) itemView.findViewById(R.id.tv_result))
                 .setText(itemView.getResources().getString(
                         R.string.main_quest_list_progress_target_counter,
                         item.getUserQuest().getTaskProgress(),

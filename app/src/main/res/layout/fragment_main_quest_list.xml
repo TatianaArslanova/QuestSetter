@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         tools:itemCount="20"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/main_quest_list_rv_item_not_completed"
+        tools:listitem="@layout/li_quest_new"
         tools:spanCount="2">
 
     </android.support.v7.widget.RecyclerView>
