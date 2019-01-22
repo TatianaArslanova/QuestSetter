@@ -31,10 +31,10 @@ public class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
         ((TextView) itemView.findViewById(R.id.tv_result))
                 .setText(itemView.getResources().getString(
                         R.string.main_quest_list_progress_target_counter,
-                        item.getUserQuest().getTaskProgress(),
-                        item.getUserQuest().getTaskTarget()));
+                        item.getUserTask().getTaskProgress(),
+                        item.getUserTask().getTaskTarget()));
         ImageButton iconBtn = itemView.findViewById(R.id.ib_icon);
-        iconBtn.setOnClickListener(v -> listener.tryToCompleteQuest(item.getUserQuest()));
+        iconBtn.setOnClickListener(v -> listener.tryToCompleteQuest(item.getUserTask()));
         switch (item.getPattern().getQuestType()) {
             case ONCE:
                 iconBtn.setImageResource(R.drawable.ic_quest_one_shot);
@@ -44,7 +44,7 @@ public class ViewHolderQuestNotCompleted extends BaseQuestViewHolder {
                 break;
         }
         ProgressBar progressBar = itemView.findViewById(R.id.pb_progress);
-        progressBar.setMax(item.getUserQuest().getTaskTarget());
-        progressBar.setProgress(item.getUserQuest().getTaskProgress());
+        progressBar.setMax(item.getUserTask().getTaskTarget());
+        progressBar.setProgress(item.getUserTask().getTaskProgress());
     }
 }

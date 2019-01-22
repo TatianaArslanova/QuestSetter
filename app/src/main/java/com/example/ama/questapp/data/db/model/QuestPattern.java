@@ -6,7 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.example.ama.questapp.data.db.converter.QuestTypeConverter;
 
-@Entity(tableName = "patterns")
+@Entity(tableName = "quest_pattern")
 public class QuestPattern {
 
     @PrimaryKey(autoGenerate = true)

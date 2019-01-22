@@ -1,8 +1,7 @@
 package com.example.ama.questapp.data.repo.provider;
 
-import com.example.ama.questapp.data.db.model.GlobalStatus;
 import com.example.ama.questapp.data.db.model.QuestPattern;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 
 import java.util.List;
 
@@ -11,14 +10,11 @@ import java.util.List;
  */
 
 public interface EngineQuestProvider {
-    void addQuestsWithGlobalStatuses(List<UserQuest> userQuests,
-                                     List<GlobalStatus> globalStatuses);
+    void addUserTasks(List<UserTask> userTasks);
 
-    void updateQuestWithGlobalStatus(UserQuest userQuest, GlobalStatus globalStatus);
+    void updateUserTask(UserTask userTask);
 
-    List<UserQuest> getAllStatusesFromPatternId(int patternId);
-
-    GlobalStatus getGlobalStatusByPatternId(int patternId);
+    List<UserTask> getAllTasksByPatternId(int patternId);
 
     List<QuestPattern> getUnusedDailyQuestPatterns();
 

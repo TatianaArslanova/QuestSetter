@@ -1,9 +1,8 @@
 package com.example.ama.questapp.data.repo.provider;
 
 import com.example.ama.questapp.data.db.QuestDatabase;
-import com.example.ama.questapp.data.db.model.GlobalStatus;
 import com.example.ama.questapp.data.db.model.QuestPattern;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 
 import java.util.List;
 
@@ -25,26 +24,18 @@ public class EngineQuestProviderImpl implements EngineQuestProvider {
     }
 
     @Override
-    public void addQuestsWithGlobalStatuses(List<UserQuest> userQuests, List<GlobalStatus> globalStatuses) {
-        database.getUserQuestDao().insertAllQuestStatuses(userQuests);
-        database.getQuestGlobalStatusDao().insertAllGlobalStatuses(globalStatuses);
+    public void addUserTasks(List<UserTask> userTasks) {
+        database.getUserQuestDao().insertAllUserTasks(userTasks);
     }
 
     @Override
-    public void updateQuestWithGlobalStatus(UserQuest userQuest, GlobalStatus globalStatus) {
-        database.getUserQuestDao().updateStatus(userQuest);
-        database.getQuestGlobalStatusDao().updateGlobalStatus(globalStatus);
+    public void updateUserTask(UserTask userTask) {
+        database.getUserQuestDao().updateUserTask(userTask);
     }
 
     @Override
-    public List<UserQuest> getAllStatusesFromPatternId(int patternId) {
+    public List<UserTask> getAllTasksByPatternId(int patternId) {
         return database.getUserQuestDao().getAllStatusesFromPatternId(patternId);
-    }
-
-    @Override
-    public GlobalStatus getGlobalStatusByPatternId(int patternId) {
-        return database.getQuestGlobalStatusDao()
-                .getGlobalStatusByPatternId(patternId);
     }
 
     @Override

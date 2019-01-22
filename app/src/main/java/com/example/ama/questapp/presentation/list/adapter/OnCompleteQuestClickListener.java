@@ -1,7 +1,7 @@
 package com.example.ama.questapp.presentation.list.adapter;
 
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 
 public interface OnCompleteQuestClickListener {
-    void tryToCompleteQuest(UserQuest userQuest);
+    void tryToCompleteQuest(UserTask userTask);
 }

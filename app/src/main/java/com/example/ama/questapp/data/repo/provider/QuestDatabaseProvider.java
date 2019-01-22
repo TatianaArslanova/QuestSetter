@@ -24,7 +24,7 @@ public class QuestDatabaseProvider implements QuestProvider {
     }
 
     @Override
-    public Flowable<List<PatternWithStatus>> loadAllUserQuests() {
-        return database.getPatternWithStatusesDao().getAllUserQuests();
+    public Flowable<List<PatternWithStatus>> loadAllUserTasks() {
+        return database.getPatternWithStatusesDao().getAllUserTasks();
     }
 }

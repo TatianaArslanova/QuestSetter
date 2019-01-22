@@ -1,7 +1,8 @@
 package com.example.ama.questapp.domain.engine.producer;
 
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
 import com.example.ama.questapp.data.db.model.QuestPattern;
+import com.example.ama.questapp.data.db.model.UserTask;
+import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +32,7 @@ public class DailyUserTaskProducer {
      *                 Final amount of new quests can be less,
      *                 but never more this value
      * @return list of quest patterns free to creating new user quests
-     * @see com.example.ama.questapp.data.db.model.UserQuest
+     * @see UserTask
      * @see QuestPattern
      */
 

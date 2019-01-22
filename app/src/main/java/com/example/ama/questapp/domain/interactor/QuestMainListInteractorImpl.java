@@ -1,11 +1,9 @@
 package com.example.ama.questapp.domain.interactor;
 
-import com.example.ama.questapp.domain.engine.UserQuestEngine;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.data.repo.provider.QuestProvider;
-import com.example.ama.questapp.presentation.base.ViewState;
-import com.example.ama.questapp.presentation.base.ViewStateFactory;
+import com.example.ama.questapp.domain.engine.UserQuestEngine;
 
 import java.util.List;
 
@@ -13,8 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 @Singleton
@@ -31,13 +27,13 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
     }
 
     @Override
-    public void completeQuest(UserQuest userQuest) {
-        userQuestEngine.incrementQuestProgress(userQuest);
+    public void completeQuest(UserTask userTask) {
+        userQuestEngine.incrementQuestProgress(userTask);
     }
 
     @Override
     public Flowable<List<PatternWithStatus>> loadAllUserQuests() {
-        return questProvider.loadAllUserQuests()
+        return questProvider.loadAllUserTasks()
                 .subscribeOn(Schedulers.io());
     }
 }

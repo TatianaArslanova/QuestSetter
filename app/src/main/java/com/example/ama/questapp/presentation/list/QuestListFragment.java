@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.presentation.base.ViewState;
 import com.example.ama.questapp.presentation.list.adapter.MainQuestListAdapter;
@@ -92,8 +92,8 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
     }
 
     @Override
-    public void tryToCompleteQuest(UserQuest userQuest) {
-        presenter.tryToCompleteQuest(userQuest);
+    public void tryToCompleteQuest(UserTask userTask) {
+        presenter.tryToCompleteQuest(userTask);
     }
 
     private void loading(boolean loading) {

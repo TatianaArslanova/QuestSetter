@@ -30,7 +30,7 @@ public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHold
 
     @Override
     public int getItemViewType(int position) {
-        return items.get(position).getUserQuest().isCompleted() ?
+        return items.get(position).getUserTask().isCompleted() ?
                 QuestListViewHolderFactory.COMPLETED_QUEST :
                 QuestListViewHolderFactory.NOT_COMPLETED_QUEST;
     }

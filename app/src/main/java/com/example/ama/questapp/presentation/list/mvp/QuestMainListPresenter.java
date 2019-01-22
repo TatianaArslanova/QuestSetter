@@ -1,6 +1,6 @@
 package com.example.ama.questapp.presentation.list.mvp;
 
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.PatternWithStatus;
 import com.example.ama.questapp.domain.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.presentation.base.BasePresenter;
@@ -55,9 +55,9 @@ public class QuestMainListPresenter
     }
 
     @Override
-    public void tryToCompleteQuest(UserQuest userQuest) {
+    public void tryToCompleteQuest(UserTask userTask) {
         disposable.add(Completable.fromAction(
-                () -> interactor.completeQuest(userQuest)
+                () -> interactor.completeQuest(userTask)
         )
                 .subscribeOn(Schedulers.io())
                 .subscribe());

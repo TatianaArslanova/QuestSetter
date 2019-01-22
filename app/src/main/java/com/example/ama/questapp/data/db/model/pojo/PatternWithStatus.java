@@ -3,7 +3,7 @@ package com.example.ama.questapp.data.db.model.pojo;
 import android.arch.persistence.room.Embedded;
 
 import com.example.ama.questapp.data.db.model.QuestPattern;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 
 public class PatternWithStatus {
 
@@ -11,14 +11,14 @@ public class PatternWithStatus {
     private QuestPattern pattern;
 
     @Embedded
-    private UserQuest userQuest;
+    private UserTask userTask;
 
-    public UserQuest getUserQuest() {
-        return userQuest;
+    public UserTask getUserTask() {
+        return userTask;
     }
 
-    public void setUserQuest(UserQuest userQuest) {
-        this.userQuest = userQuest;
+    public void setUserTask(UserTask userTask) {
+        this.userTask = userTask;
     }
 
     public QuestPattern getPattern() {

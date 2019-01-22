@@ -1,9 +1,9 @@
 package com.example.ama.questapp.di;
 
-import com.example.ama.questapp.domain.engine.UserQuestEngine;
-import com.example.ama.questapp.domain.engine.operations.UserQuestCreator;
-import com.example.ama.questapp.domain.engine.operations.UserQuestUpdater;
 import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
+import com.example.ama.questapp.domain.engine.UserQuestEngine;
+import com.example.ama.questapp.domain.engine.operations.UserTaskCreator;
+import com.example.ama.questapp.domain.engine.operations.UserTaskUpdater;
 import com.example.ama.questapp.domain.engine.producer.DailyUserTaskProducer;
 
 import javax.inject.Singleton;
@@ -17,8 +17,8 @@ public class QuestEngineModule {
     @Provides
     @Singleton
     UserQuestEngine provideUserQuestEngine(DailyUserTaskProducer producer,
-                                           UserQuestCreator creator,
-                                           UserQuestUpdater updater) {
+                                           UserTaskCreator creator,
+                                           UserTaskUpdater updater) {
         return new UserQuestEngine(producer, creator, updater);
     }
 
@@ -30,13 +30,13 @@ public class QuestEngineModule {
 
     @Provides
     @Singleton
-    UserQuestCreator provideUserQuestCreator(EngineQuestProvider questProvider) {
-        return new UserQuestCreator(questProvider);
+    UserTaskCreator provideUserTaskCreator(EngineQuestProvider questProvider) {
+        return new UserTaskCreator(questProvider);
     }
 
     @Provides
     @Singleton
-    UserQuestUpdater provideUserQuestUpdater(EngineQuestProvider questProvider) {
-        return new UserQuestUpdater(questProvider);
+    UserTaskUpdater provideUserTaskUpdater(EngineQuestProvider questProvider) {
+        return new UserTaskUpdater(questProvider);
     }
 }

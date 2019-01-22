@@ -1,15 +1,10 @@
 package com.example.ama.questapp.data.db.model;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "usertasks",
-        foreignKeys = @ForeignKey(
-                entity = QuestPattern.class,
-                parentColumns = "questId",
-                childColumns = "patternId"))
-public class UserQuest {
+@Entity(tableName = "user_task")
+public class UserTask {
 
     @PrimaryKey(autoGenerate = true)
     private final int taskId;
@@ -18,7 +13,7 @@ public class UserQuest {
     private final int taskTarget;
     private int taskProgress;
 
-    public UserQuest(int taskId, int patternId, boolean isCompleted, int taskTarget, int taskProgress) {
+    public UserTask(int taskId, int patternId, boolean isCompleted, int taskTarget, int taskProgress) {
         this.taskId = taskId;
         this.patternId = patternId;
         this.isCompleted = isCompleted;

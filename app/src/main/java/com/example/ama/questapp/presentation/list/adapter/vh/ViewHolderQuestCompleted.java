@@ -24,7 +24,7 @@ public class ViewHolderQuestCompleted extends BaseQuestViewHolder {
         ((TextView) itemView.findViewById(R.id.tv_result))
                 .setText(itemView.getResources().getString(
                         R.string.main_quest_list_progress_target_counter,
-                        item.getUserQuest().getTaskProgress(),
-                        item.getUserQuest().getTaskTarget()));
+                        item.getUserTask().getTaskProgress(),
+                        item.getUserTask().getTaskTarget()));
     }
 }

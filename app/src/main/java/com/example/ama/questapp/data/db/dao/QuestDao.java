@@ -16,14 +16,14 @@ public interface QuestDao {
     @Insert
     void insertAllQuestPatterns(List<QuestPattern> patterns);
 
-    @Query("SELECT * FROM patterns")
+    @Query("SELECT * FROM quest_pattern")
     Single<List<QuestPattern>> getAllQuestPatterns();
 
-    @Query("SELECT * FROM patterns WHERE questId NOT IN (SELECT DISTINCT patternId FROM usertasks)")
+    @Query("SELECT * FROM quest_pattern WHERE questId NOT IN (SELECT DISTINCT patternId FROM user_task)")
     List<QuestPattern> getAllNotUsedQuests();
 
-    @Query("SELECT * FROM patterns WHERE questId " +
-            "IN (SELECT DISTINCT patternId FROM usertasks WHERE isCompleted=1 " +
-            "AND patternId NOT IN(SELECT patternId FROM usertasks WHERE isCompleted=0))")
+    @Query("SELECT * FROM quest_pattern WHERE questId " +
+            "IN (SELECT DISTINCT patternId FROM user_task WHERE isCompleted=1 " +
+            "AND patternId NOT IN(SELECT patternId FROM user_task WHERE isCompleted=0))")
     List<QuestPattern> getAllNotCurrentCompletedQuests();
 }

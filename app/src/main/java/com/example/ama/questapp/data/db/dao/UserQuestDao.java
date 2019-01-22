@@ -5,7 +5,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
 
 import java.util.List;
 
@@ -13,14 +13,14 @@ import java.util.List;
 public interface UserQuestDao {
 
     @Insert
-    void insertAllQuestStatuses(List<UserQuest> userQuests);
+    void insertAllUserTasks(List<UserTask> userTasks);
 
     @Insert
-    void insertStatus(UserQuest status);
+    void insertUserTask(UserTask userTask);
 
     @Update
-    void updateStatus(UserQuest status);
+    void updateUserTask(UserTask userTask);
 
-    @Query("SELECT * FROM usertasks WHERE patternId = :patternId")
-    List<UserQuest> getAllStatusesFromPatternId(int patternId);
+    @Query("SELECT * FROM user_task WHERE patternId = :patternId")
+    List<UserTask> getAllStatusesFromPatternId(int patternId);
 }

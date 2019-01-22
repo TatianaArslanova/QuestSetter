@@ -1,9 +1,8 @@
 package com.example.ama.questapp.domain.engine.operations;
 
-import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
-import com.example.ama.questapp.data.db.model.GlobalStatus;
 import com.example.ama.questapp.data.db.model.QuestPattern;
-import com.example.ama.questapp.data.db.model.UserQuest;
+import com.example.ama.questapp.data.db.model.UserTask;
+import com.example.ama.questapp.data.repo.provider.EngineQuestProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * You should start another thread to call any method from this class.
  */
 
-public class UserQuestCreator {
+public class UserTaskCreator {
     private static final int AUTO_ID = 0;
     private static final int START_PROGRESS = 0;
 
@@ -22,7 +21,7 @@ public class UserQuestCreator {
 
     private EngineQuestProvider questProvider;
 
-    public UserQuestCreator(EngineQuestProvider questProvider) {
+    public UserTaskCreator(EngineQuestProvider questProvider) {
         this.questProvider = questProvider;
     }
 
@@ -32,15 +31,12 @@ public class UserQuestCreator {
      * It mustn't be called from UI-thread
      * @param patterns list of quest patterns to create user quests
      * @see QuestPattern
-     * @see UserQuest
-     * @see GlobalStatus
+     * @see UserTask
      */
 
     public void createUserQuests(List<QuestPattern> patterns) {
-        List<UserQuest> userQuests = patternsToUserQuests(patterns);
-        questProvider.addQuestsWithGlobalStatuses(
-                userQuests,
-                getGlobalStatuses(userQuests));
+        List<UserTask> userQuests = patternsToUserQuests(patterns);
+        questProvider.addUserTasks(userQuests);
     }
 
     private int calcTargetCount(QuestPattern questPattern) {
@@ -55,43 +51,19 @@ public class UserQuestCreator {
         }
     }
 
-    private List<UserQuest> patternsToUserQuests(List<QuestPattern> patterns) {
-        List<UserQuest> questList = new ArrayList<>();
+    private List<UserTask> patternsToUserQuests(List<QuestPattern> patterns) {
+        List<UserTask> questList = new ArrayList<>();
         for (QuestPattern o : patterns) {
             questList.add(createUserQuest(o));
         }
         return questList;
     }
 
-    private List<GlobalStatus> getGlobalStatuses(List<UserQuest> userQuests) {
-        List<GlobalStatus> globalStatuses = new ArrayList<>();
-        for (UserQuest o : userQuests) {
-            globalStatuses.add(getGlobalStatus(o));
-        }
-        return globalStatuses;
-    }
-
-    private GlobalStatus getGlobalStatus(UserQuest userQuest) {
-        GlobalStatus globalStatus =
-                questProvider.getGlobalStatusByPatternId(userQuest.getPatternId());
-        if (globalStatus == null) {
-            globalStatus = createGlobalStatus(userQuest);
-        }
-        return globalStatus;
-    }
-
-    private UserQuest createUserQuest(QuestPattern pattern) {
-        return new UserQuest(AUTO_ID,
+    private UserTask createUserQuest(QuestPattern pattern) {
+        return new UserTask(AUTO_ID,
                 pattern.getQuestId(),
                 false,
                 calcTargetCount(pattern),
-                START_PROGRESS);
-    }
-
-    private GlobalStatus createGlobalStatus(UserQuest userQuest) {
-        return new GlobalStatus(
-                AUTO_ID,
-                userQuest.getPatternId(),
                 START_PROGRESS);
     }
 }

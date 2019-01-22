@@ -12,6 +12,6 @@ import io.reactivex.Flowable;
 @Dao
 public interface PatternWithStatusesDao {
 
-    @Query("SELECT * FROM usertasks, patterns WHERE usertasks.patternId=patterns.questId ORDER BY usertasks.isCompleted")
-    Flowable<List<PatternWithStatus>> getAllUserQuests();
+    @Query("SELECT * FROM user_task, quest_pattern WHERE user_task.patternId=quest_pattern.questId ORDER BY user_task.isCompleted")
+    Flowable<List<PatternWithStatus>> getAllUserTasks();
 }
