@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.ama.questapp.di.AppComponent;
 import com.example.ama.questapp.di.AppModule;
 import com.example.ama.questapp.di.DaggerAppComponent;
+import com.facebook.stetho.Stetho;
 
 public class QuestApp extends Application {
     private static QuestApp instance;
@@ -21,6 +22,7 @@ public class QuestApp extends Application {
         component = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+        initStetho();
     }
 
     public static QuestApp getInstance() {
@@ -29,5 +31,9 @@ public class QuestApp extends Application {
 
     public AppComponent getComponent() {
         return component;
+    }
+
+    private void initStetho() {
+        if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(this);
     }
 }

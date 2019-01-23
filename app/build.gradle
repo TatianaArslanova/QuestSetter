@@ -27,6 +27,7 @@ ext {
     roomVer = "1.1.1"
     rxJavaAndroidVer = "2.0.2"
     rxJavaVer = "2.1.8"
+    stethoVer = "1.5.0"
 }
 
 dependencies {
@@ -48,6 +49,8 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidVer"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVer"
+
+    implementation "com.facebook.stetho:stetho:$stethoVer"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
