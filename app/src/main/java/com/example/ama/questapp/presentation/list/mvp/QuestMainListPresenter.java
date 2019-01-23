@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 @MainQuestListScope
 public class QuestMainListPresenter
@@ -49,12 +50,13 @@ public class QuestMainListPresenter
                     if (view != null) {
                         view.render(listViewState);
                     }
-                }));
+                }, Timber::e));
     }
 
     @Override
     public void tryToCompleteQuest(UserTask userTask) {
         disposable.add(interactor.completeQuest(userTask)
-                .subscribe());
+                .subscribe(() -> {
+                }, Timber::e));
     }
 }

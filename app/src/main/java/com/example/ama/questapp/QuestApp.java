@@ -7,6 +7,10 @@ import com.example.ama.questapp.di.AppModule;
 import com.example.ama.questapp.di.DaggerAppComponent;
 import com.facebook.stetho.Stetho;
 
+import timber.log.Timber;
+
+import static timber.log.Timber.DebugTree;
+
 public class QuestApp extends Application {
     private static QuestApp instance;
     private AppComponent component;
@@ -23,6 +27,7 @@ public class QuestApp extends Application {
                 .appModule(new AppModule(this))
                 .build();
         initStetho();
+        initTimber();
     }
 
     public static QuestApp getInstance() {
@@ -35,5 +40,9 @@ public class QuestApp extends Application {
 
     private void initStetho() {
         if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(this);
+    }
+
+    private void initTimber() {
+        if (BuildConfig.DEBUG) Timber.plant(new DebugTree());
     }
 }
