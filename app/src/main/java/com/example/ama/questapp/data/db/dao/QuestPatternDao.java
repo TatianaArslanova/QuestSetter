@@ -20,10 +20,10 @@ public interface QuestPatternDao {
     Single<List<QuestPattern>> getAllQuestPatterns();
 
     @Query("SELECT * FROM quest_pattern WHERE questId NOT IN (SELECT DISTINCT patternId FROM user_task)")
-    List<QuestPattern> getAllNotUsedQuests();
+    Single<List<QuestPattern>> getAllUnusedQuests();
 
     @Query("SELECT * FROM quest_pattern WHERE questId " +
             "IN (SELECT DISTINCT patternId FROM user_task WHERE isCompleted=1 " +
             "AND patternId NOT IN(SELECT patternId FROM user_task WHERE isCompleted=0))")
-    List<QuestPattern> getAllNotCurrentCompletedQuests();
+    Single<List<QuestPattern>> getAllNotCurrentCompletedQuests();
 }

@@ -1,5 +1,6 @@
 package com.example.ama.questapp.data.repo.provider;
 
+import com.example.ama.questapp.data.db.dao.QuestPatternDao;
 import com.example.ama.questapp.data.db.dao.UserTaskDao;
 import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
 import com.example.ama.questapp.data.db.model.UserTask;
@@ -10,18 +11,24 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class UserTaskProviderImpl implements UserTaskProvider {
     private UserTaskWithPatternDao userTaskWithPatternDao;
     private UserTaskDao userTaskDao;
+    private QuestPatternDao questPatternDao;
 
     @Inject
-    public UserTaskProviderImpl(UserTaskWithPatternDao userTaskWithPatternDao, UserTaskDao userTaskDao) {
+    public UserTaskProviderImpl(UserTaskWithPatternDao userTaskWithPatternDao,
+                                UserTaskDao userTaskDao,
+                                QuestPatternDao questPatternDao) {
         this.userTaskWithPatternDao = userTaskWithPatternDao;
         this.userTaskDao = userTaskDao;
+        this.questPatternDao = questPatternDao;
     }
 
     @Override
@@ -31,17 +38,20 @@ public class UserTaskProviderImpl implements UserTaskProvider {
     }
 
     @Override
-    public void addUserTasks(List<UserTask> userTasks) {
-        userTaskDao.insertAllUserTasks(userTasks);
+    public Completable addUserTasks(List<UserTask> userTasks) {
+        return Completable.fromAction(() -> userTaskDao.insertAllUserTasks(userTasks))
+                .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public void updateUserTask(UserTask userTask) {
-        userTaskDao.updateUserTask(userTask);
+    public Completable updateUserTask(UserTask userTask) {
+        return Completable.fromAction(() -> userTaskDao.updateUserTask(userTask))
+                .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public List<UserTask> getAllTasksByPatternId(int patternId) {
-        return userTaskDao.getAllStatusesFromPatternId(patternId);
+    public Single<List<UserTask>> getAllTasksByPatternId(int patternId) {
+        return userTaskDao.getAllStatusesFromPatternId(patternId)
+                .subscribeOn(Schedulers.io());
     }
 }

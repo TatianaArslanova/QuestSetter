@@ -8,6 +8,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
+
 @Singleton
 public class QuestPatternsProviderImpl implements QuestPatternsProvider {
     private QuestPatternDao questPatternDao;
@@ -18,12 +21,14 @@ public class QuestPatternsProviderImpl implements QuestPatternsProvider {
     }
 
     @Override
-    public List<QuestPattern> getUnusedDailyQuestPatterns() {
-        return questPatternDao.getAllNotUsedQuests();
+    public Single<List<QuestPattern>> getUnusedDailyQuestPatterns() {
+        return questPatternDao.getAllUnusedQuests()
+                .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public List<QuestPattern> getRepeatableDailyQuestPatterns() {
-        return questPatternDao.getAllNotCurrentCompletedQuests();
+    public Single<List<QuestPattern>> getRepeatableDailyQuestPatterns() {
+        return questPatternDao.getAllNotCurrentCompletedQuests()
+                .subscribeOn(Schedulers.io());
     }
 }

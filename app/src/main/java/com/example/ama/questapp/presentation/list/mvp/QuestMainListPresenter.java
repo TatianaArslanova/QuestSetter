@@ -11,9 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 @MainQuestListScope
 public class QuestMainListPresenter
@@ -56,10 +54,7 @@ public class QuestMainListPresenter
 
     @Override
     public void tryToCompleteQuest(UserTask userTask) {
-        disposable.add(Completable.fromAction(
-                () -> interactor.completeQuest(userTask)
-        )
-                .subscribeOn(Schedulers.io())
+        disposable.add(interactor.completeQuest(userTask)
                 .subscribe());
     }
 }

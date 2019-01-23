@@ -3,31 +3,33 @@ package com.example.ama.questapp.domain.interactor;
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
-import com.example.ama.questapp.domain.engine.UserQuestEngine;
+import com.example.ama.questapp.domain.engine.QuestEngine;
+import com.example.ama.questapp.domain.engine.QuestEngineGateway;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 @Singleton
 public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     private UserTaskProvider userTaskProvider;
-    private UserQuestEngine userQuestEngine;
+    private QuestEngineGateway userQuestEngine;
 
     @Inject
     public QuestMainListInteractorImpl(UserTaskProvider questProvider,
-                                       UserQuestEngine userQuestEngine) {
+                                       QuestEngine userQuestEngine) {
         this.userTaskProvider = questProvider;
         this.userQuestEngine = userQuestEngine;
     }
 
     @Override
-    public void completeQuest(UserTask userTask) {
-        userQuestEngine.incrementQuestProgress(userTask);
+    public Completable completeQuest(UserTask userTask) {
+        return userQuestEngine.onIncrementQuestProgress(userTask);
     }
 
     @Override

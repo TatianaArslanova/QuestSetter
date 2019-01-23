@@ -5,14 +5,16 @@ import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public interface UserTaskProvider {
-    void addUserTasks(List<UserTask> userTasks);
+    Completable addUserTasks(List<UserTask> userTasks);
 
-    void updateUserTask(UserTask userTask);
+    Completable updateUserTask(UserTask userTask);
 
-    List<UserTask> getAllTasksByPatternId(int patternId);
+    Single<List<UserTask>> getAllTasksByPatternId(int patternId);
 
     Flowable<List<UserTaskWithPattern>> getAllUserTasksWithPattern();
 }

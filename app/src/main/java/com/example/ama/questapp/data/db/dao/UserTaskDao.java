@@ -9,6 +9,8 @@ import com.example.ama.questapp.data.db.model.UserTask;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 @Dao
 public interface UserTaskDao {
 
@@ -22,5 +24,5 @@ public interface UserTaskDao {
     void updateUserTask(UserTask userTask);
 
     @Query("SELECT * FROM user_task WHERE patternId = :patternId")
-    List<UserTask> getAllStatusesFromPatternId(int patternId);
+    Single<List<UserTask>> getAllStatusesFromPatternId(int patternId);
 }
