@@ -2,8 +2,8 @@ package com.example.ama.questapp.domain.engine;
 
 import com.example.ama.questapp.data.db.model.QuestPattern;
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.data.repo.provider.QuestPatternsProvider;
-import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.QuestPatternsProvider;
+import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
 
 import java.util.ArrayList;
 import java.util.HashSet;

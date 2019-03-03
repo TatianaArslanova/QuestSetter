@@ -2,9 +2,10 @@ package com.example.ama.questapp.domain.interactor;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
 import com.example.ama.questapp.domain.engine.QuestEngine;
 import com.example.ama.questapp.domain.engine.QuestEngineGateway;
+import com.example.ama.questapp.presentation.interactor.QuestMainListInteractor;
 
 import java.util.List;
 

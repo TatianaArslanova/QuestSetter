@@ -2,7 +2,7 @@ package com.example.ama.questapp.di;
 
 import com.example.ama.questapp.domain.engine.QuestEngine;
 import com.example.ama.questapp.domain.engine.QuestEngineGateway;
-import com.example.ama.questapp.domain.interactor.QuestMainListInteractor;
+import com.example.ama.questapp.presentation.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.domain.interactor.QuestMainListInteractorImpl;
 
 import javax.inject.Singleton;

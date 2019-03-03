@@ -1,4 +1,4 @@
-package com.example.ama.questapp.data.repo.provider;
+package com.example.ama.questapp.domain.repointerface;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;

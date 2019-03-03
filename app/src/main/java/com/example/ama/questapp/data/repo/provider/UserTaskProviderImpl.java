@@ -5,6 +5,7 @@ import com.example.ama.questapp.data.db.dao.UserTaskDao;
 import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
+import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
 
 import java.util.List;
 

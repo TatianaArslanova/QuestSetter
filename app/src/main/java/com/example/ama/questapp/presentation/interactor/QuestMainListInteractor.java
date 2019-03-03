@@ -1,4 +1,4 @@
-package com.example.ama.questapp.domain.interactor;
+package com.example.ama.questapp.presentation.interactor;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;

@@ -2,7 +2,7 @@ package com.example.ama.questapp.presentation.list.mvp;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.domain.interactor.QuestMainListInteractor;
+import com.example.ama.questapp.presentation.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.presentation.base.BasePresenter;
 import com.example.ama.questapp.presentation.base.ViewStateFactory;
 import com.example.ama.questapp.presentation.list.di.MainQuestListScope;

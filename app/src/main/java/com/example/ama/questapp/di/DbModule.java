@@ -7,9 +7,9 @@ import com.example.ama.questapp.data.db.QuestDatabase;
 import com.example.ama.questapp.data.db.dao.QuestPatternDao;
 import com.example.ama.questapp.data.db.dao.UserTaskDao;
 import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
-import com.example.ama.questapp.data.repo.provider.QuestPatternsProvider;
+import com.example.ama.questapp.domain.repointerface.QuestPatternsProvider;
 import com.example.ama.questapp.data.repo.provider.QuestPatternsProviderImpl;
-import com.example.ama.questapp.data.repo.provider.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
 import com.example.ama.questapp.data.repo.provider.UserTaskProviderImpl;
 
 import javax.inject.Singleton;

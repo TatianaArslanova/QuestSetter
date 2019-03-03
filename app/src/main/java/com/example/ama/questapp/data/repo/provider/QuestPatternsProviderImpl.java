@@ -2,6 +2,7 @@ package com.example.ama.questapp.data.repo.provider;
 
 import com.example.ama.questapp.data.db.dao.QuestPatternDao;
 import com.example.ama.questapp.data.db.model.QuestPattern;
+import com.example.ama.questapp.domain.repointerface.QuestPatternsProvider;
 
 import java.util.List;
 
