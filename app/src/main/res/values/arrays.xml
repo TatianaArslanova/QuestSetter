@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="quest_types">
+        <item>Один раз</item>
+        <item>Определенное количество раз</item>
+    </string-array>
+
+</resources>

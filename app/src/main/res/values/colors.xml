@@ -8,4 +8,7 @@
     <color name="buttonPressed">#C7C858</color>
     <color name="buttonFocused">#FFFA94</color>
     <color name="transparent">#00000000</color>
+
+    <color name="gray_dark">#1A1A1A</color>
+    <color name="gray_middle">#252525</color>
 </resources>

@@ -3,4 +3,10 @@
     <string name="main_quest_list_empty_message">Квестов нет</string>
     <string name="main_quest_list_progress_target_counter">%1$d/%2$d</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="add_quest_title_add_quest">Добавление нового квеста</string>
+    <string name="add_quest_name">Название</string>
+    <string name="add_quest_label_description">Описание квеста</string>
+    <string name="add_quest_label_quest_type">Это действие я буду выполнять...</string>
+    <string name="add_quest_hint_count">Количество</string>
+    <string name="common_save">Сохранить</string>
 </resources>

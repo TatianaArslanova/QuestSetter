@@ -3,6 +3,7 @@ package com.example.ama.questapp.presentation.list;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
+import com.example.ama.questapp.presentation.MainActivity;
 import com.example.ama.questapp.presentation.base.ViewState;
 import com.example.ama.questapp.presentation.list.adapter.MainQuestListAdapter;
 import com.example.ama.questapp.presentation.list.mvp.QuestMainListContract;
@@ -34,6 +36,7 @@ public class QuestListFragment extends DaggerFragment implements QuestMainListCo
     private ProgressBar progressBar;
     private RecyclerView rvMain;
     private TextView tvEmptyMessage;
+    private FloatingActionButton floatingActionButton;
 
     public static QuestListFragment newInstance() {
         return new QuestListFragment();
@@ -66,9 +69,15 @@ public class QuestListFragment extends DaggerFragment implements QuestMainListCo
     private void initUI(View view) {
         progressBar = view.findViewById(R.id.pb_loading);
         tvEmptyMessage = view.findViewById(R.id.tv_empty_message);
+        floatingActionButton = view.findViewById(R.id.add_quest);
         rvMain = view.findViewById(R.id.rv_main_quest_list);
         rvMain.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMain.setAdapter(adapter);
+        floatingActionButton.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                ((MainActivity) getActivity()).openAddQuestScreen();
+            }
+        });
     }
 
     @Override
