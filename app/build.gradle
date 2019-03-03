@@ -21,15 +21,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
-ext {
-    androidSupportVer = "28.0.0"
-    daggerVer = "2.20"
-    roomVer = "1.1.1"
-    rxJavaAndroidVer = "2.0.2"
-    rxJavaVer = "2.1.8"
-    stethoVer = "1.5.0"
-    timberVer = "4.7.1"
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
