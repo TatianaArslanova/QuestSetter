@@ -8,7 +8,7 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
-public interface QuestMainListInteractor {
+public interface CurrentQuestsInteractor {
     Completable completeQuest(UserTask userTask);
 
     Flowable<List<UserTaskWithPattern>> loadAllUserQuests();

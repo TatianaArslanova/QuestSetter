@@ -2,8 +2,8 @@ package com.example.ama.questapp.domain.engine;
 
 import com.example.ama.questapp.data.db.model.QuestPattern;
 import com.example.ama.questapp.data.db.model.UserTask;
-import com.example.ama.questapp.domain.repointerface.QuestPatternsProvider;
-import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.QuestPatternsRepository;
+import com.example.ama.questapp.domain.repointerface.UserTaskRepository;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,18 +29,18 @@ public class QuestEngine implements QuestEngineGateway {
 
     private Random random = new Random();
 
-    private QuestPatternsProvider questPatternsProvider;
-    private UserTaskProvider userTaskProvider;
+    private QuestPatternsRepository questPatternsRepository;
+    private UserTaskRepository userTaskRepository;
 
     @Inject
-    public QuestEngine(QuestPatternsProvider questPatternsProvider, UserTaskProvider userTaskProvider) {
-        this.questPatternsProvider = questPatternsProvider;
-        this.userTaskProvider = userTaskProvider;
+    public QuestEngine(QuestPatternsRepository questPatternsRepository, UserTaskRepository userTaskRepository) {
+        this.questPatternsRepository = questPatternsRepository;
+        this.userTaskRepository = userTaskRepository;
     }
 
     @Override
     public Completable onIncrementQuestProgress(UserTask userTask) {
-        return userTaskProvider.updateUserTask(incrementProgress(userTask));
+        return userTaskRepository.updateUserTask(incrementProgress(userTask));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class QuestEngine implements QuestEngineGateway {
                 .flatMapObservable(Observable::fromIterable)
                 .map(this::createUserTaskFromPattern)
                 .buffer(maxCount)
-                .flatMapCompletable(userTasks -> userTaskProvider.addUserTasks(userTasks));
+                .flatMapCompletable(userTasks -> userTaskRepository.addUserTasks(userTasks));
     }
 
     private UserTask incrementProgress(UserTask userTask) {
@@ -63,7 +63,7 @@ public class QuestEngine implements QuestEngineGateway {
     }
 
     private Single<List<QuestPattern>> getQuestPatternsForUserTasks(int maxCount) {
-        return questPatternsProvider.getUnusedDailyQuestPatterns()
+        return questPatternsRepository.getUnusedDailyQuestPatterns()
                 .map(questPatterns -> selectPatterns(questPatterns, maxCount))
                 .flatMap(questPatterns ->
                         questPatterns.size() == maxCount ?
@@ -71,7 +71,7 @@ public class QuestEngine implements QuestEngineGateway {
     }
 
     private Single<List<QuestPattern>> addRepeatableQuestPatterns(List<QuestPattern> selectedPatterns, int maxCount) {
-        return questPatternsProvider.getRepeatableDailyQuestPatterns()
+        return questPatternsRepository.getRepeatableDailyQuestPatterns()
                 .map(questPatterns -> selectPatterns(questPatterns, maxCount - selectedPatterns.size()))
                 .map(questPatterns -> {
                     selectedPatterns.addAll(questPatterns);

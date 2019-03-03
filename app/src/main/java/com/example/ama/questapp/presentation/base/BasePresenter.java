@@ -2,7 +2,7 @@ package com.example.ama.questapp.presentation.base;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BasePresenter<T extends QuestView> implements Presenter<T> {
+public abstract class BasePresenter<T extends BaseContract.QuestView> implements BaseContract.Presenter<T> {
     protected T view;
     protected CompositeDisposable disposable;
 

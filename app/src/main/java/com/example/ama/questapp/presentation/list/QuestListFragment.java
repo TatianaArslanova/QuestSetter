@@ -3,7 +3,6 @@ package com.example.ama.questapp.presentation.list;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,23 +12,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ama.questapp.QuestApp;
 import com.example.ama.questapp.R;
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.base.ViewState;
 import com.example.ama.questapp.presentation.list.adapter.MainQuestListAdapter;
-import com.example.ama.questapp.presentation.list.di.ListModule;
-import com.example.ama.questapp.presentation.list.mvp.MainQuestListPresenter;
-import com.example.ama.questapp.presentation.list.mvp.MainQuestListView;
+import com.example.ama.questapp.presentation.list.mvp.QuestMainListContract;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class QuestListFragment extends Fragment implements MainQuestListView {
+import dagger.android.support.DaggerFragment;
+
+public class QuestListFragment extends DaggerFragment implements QuestMainListContract.View {
     @Inject
-    MainQuestListPresenter<MainQuestListView> presenter;
+    QuestMainListContract.Presenter presenter;
     @Inject
     MainQuestListAdapter adapter;
 
@@ -39,16 +37,6 @@ public class QuestListFragment extends Fragment implements MainQuestListView {
 
     public static QuestListFragment newInstance() {
         return new QuestListFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        QuestApp.getInstance().getComponent()
-                .mainQuestListComponent()
-                .ListModule(new ListModule(this))
-                .build()
-                .inject(this);
-        super.onCreate(savedInstanceState);
     }
 
     @Nullable

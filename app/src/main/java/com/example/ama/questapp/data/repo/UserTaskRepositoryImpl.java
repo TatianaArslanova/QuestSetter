@@ -1,11 +1,11 @@
-package com.example.ama.questapp.data.repo.provider;
+package com.example.ama.questapp.data.repo;
 
 import com.example.ama.questapp.data.db.dao.QuestPatternDao;
 import com.example.ama.questapp.data.db.dao.UserTaskDao;
 import com.example.ama.questapp.data.db.dao.UserTaskWithPatternDao;
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.UserTaskRepository;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 @Singleton
-public class UserTaskProviderImpl implements UserTaskProvider {
+public class UserTaskRepositoryImpl implements UserTaskRepository {
     private UserTaskWithPatternDao userTaskWithPatternDao;
     private UserTaskDao userTaskDao;
     private QuestPatternDao questPatternDao;
 
     @Inject
-    public UserTaskProviderImpl(UserTaskWithPatternDao userTaskWithPatternDao,
-                                UserTaskDao userTaskDao,
-                                QuestPatternDao questPatternDao) {
+    public UserTaskRepositoryImpl(UserTaskWithPatternDao userTaskWithPatternDao,
+                                  UserTaskDao userTaskDao,
+                                  QuestPatternDao questPatternDao) {
         this.userTaskWithPatternDao = userTaskWithPatternDao;
         this.userTaskDao = userTaskDao;
         this.questPatternDao = questPatternDao;

@@ -2,10 +2,10 @@ package com.example.ama.questapp.domain.interactor;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.domain.repointerface.UserTaskProvider;
+import com.example.ama.questapp.domain.repointerface.UserTaskRepository;
 import com.example.ama.questapp.domain.engine.QuestEngine;
 import com.example.ama.questapp.domain.engine.QuestEngineGateway;
-import com.example.ama.questapp.presentation.interactor.QuestMainListInteractor;
+import com.example.ama.questapp.presentation.interactor.CurrentQuestsInteractor;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 @Singleton
-public class QuestMainListInteractorImpl implements QuestMainListInteractor {
+public class CurrentQuestsInteractorImpl implements CurrentQuestsInteractor {
 
-    private UserTaskProvider userTaskProvider;
+    private UserTaskRepository userTaskRepository;
     private QuestEngineGateway userQuestEngine;
 
     @Inject
-    public QuestMainListInteractorImpl(UserTaskProvider questProvider,
+    public CurrentQuestsInteractorImpl(UserTaskRepository questProvider,
                                        QuestEngine userQuestEngine) {
-        this.userTaskProvider = questProvider;
+        this.userTaskRepository = questProvider;
         this.userQuestEngine = userQuestEngine;
     }
 
@@ -35,6 +35,6 @@ public class QuestMainListInteractorImpl implements QuestMainListInteractor {
 
     @Override
     public Flowable<List<UserTaskWithPattern>> loadAllUserQuests() {
-        return userTaskProvider.getAllUserTasksWithPattern();
+        return userTaskRepository.getAllUserTasksWithPattern();
     }
 }

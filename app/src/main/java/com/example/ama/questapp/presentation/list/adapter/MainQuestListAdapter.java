@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
 import com.example.ama.questapp.presentation.list.adapter.vh.BaseQuestViewHolder;
 import com.example.ama.questapp.presentation.list.adapter.vh.QuestListViewHolderFactory;
-import com.example.ama.questapp.presentation.list.di.MainQuestListScope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import javax.inject.Inject;
 /***
  * Adapter for main quest recycler view
  */
-@MainQuestListScope
+
 public class MainQuestListAdapter extends RecyclerView.Adapter<BaseQuestViewHolder> {
 
     private List<UserTaskWithPattern> items = new ArrayList<>();

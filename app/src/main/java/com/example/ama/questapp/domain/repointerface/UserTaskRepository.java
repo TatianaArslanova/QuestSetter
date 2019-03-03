@@ -9,7 +9,7 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
-public interface UserTaskProvider {
+public interface UserTaskRepository {
     Completable addUserTasks(List<UserTask> userTasks);
 
     Completable updateUserTask(UserTask userTask);

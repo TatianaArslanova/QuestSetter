@@ -2,10 +2,9 @@ package com.example.ama.questapp.presentation.list.mvp;
 
 import com.example.ama.questapp.data.db.model.UserTask;
 import com.example.ama.questapp.data.db.model.pojo.UserTaskWithPattern;
-import com.example.ama.questapp.presentation.interactor.QuestMainListInteractor;
 import com.example.ama.questapp.presentation.base.BasePresenter;
 import com.example.ama.questapp.presentation.base.ViewStateFactory;
-import com.example.ama.questapp.presentation.list.di.MainQuestListScope;
+import com.example.ama.questapp.presentation.interactor.CurrentQuestsInteractor;
 
 import java.util.List;
 
@@ -14,22 +13,21 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
-@MainQuestListScope
 public class QuestMainListPresenter
-        extends BasePresenter<MainQuestListView>
-        implements MainQuestListPresenter<MainQuestListView> {
+        extends BasePresenter<QuestMainListContract.View>
+        implements QuestMainListContract.Presenter {
 
-    private QuestMainListInteractor interactor;
+    private CurrentQuestsInteractor interactor;
     private ViewStateFactory<List<UserTaskWithPattern>> stateFactory;
 
     @Inject
-    public QuestMainListPresenter(QuestMainListInteractor interactor, ViewStateFactory<List<UserTaskWithPattern>> stateFactory) {
+    public QuestMainListPresenter(CurrentQuestsInteractor interactor, ViewStateFactory<List<UserTaskWithPattern>> stateFactory) {
         this.interactor = interactor;
         this.stateFactory = stateFactory;
     }
 
     @Override
-    public void attachView(MainQuestListView view) {
+    public void attachView(QuestMainListContract.View view) {
         super.attachView(view);
         loadData();
     }
