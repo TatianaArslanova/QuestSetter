@@ -51,6 +51,10 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$timberVer"
 
+    implementation "com.github.moxy-community:moxy:$moxyVer"
+    implementation "com.github.moxy-community:moxy-app-compat:$moxyVer"
+    kapt "com.github.moxy-community:moxy-compiler:$moxyVer"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
