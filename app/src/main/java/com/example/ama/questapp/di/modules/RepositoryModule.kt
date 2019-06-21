@@ -1,7 +1,7 @@
 package com.example.ama.questapp.di.modules
 
 import com.example.ama.questapp.data.repo.QuestPatternsRepositoryImpl
-import com.example.ama.questapp.data.repo.UserTaskRepositoryImpl
+import com.example.ama.questapp.data.repo.UserTaskRepositotyImpl
 import com.example.ama.questapp.domain.repointerface.QuestPatternsRepository
 import com.example.ama.questapp.domain.repointerface.UserTaskRepository
 import dagger.Binds
@@ -13,7 +13,7 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun provideUserTaskRepo(userTaskRepository: UserTaskRepositoryImpl): UserTaskRepository
+    fun provideUserTaskRepo(userTaskRepository: UserTaskRepositotyImpl): UserTaskRepository
 
     @Binds
     @Singleton

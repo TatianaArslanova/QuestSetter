@@ -25,15 +25,15 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideQuestPatternDao(database: QuestDatabase): QuestPatternDao =
-            database.questPatternDao
+            database.questPatternDao()
 
     @Provides
     @Singleton
     fun provideUserTaskDao(database: QuestDatabase): UserTaskDao =
-            database.userTaskDao
+            database.userTaskDao()
 
     @Provides
     @Singleton
     fun provideUserTaskWithPatternDao(database: QuestDatabase): UserTaskWithPatternDao =
-            database.userTaskWithPatternDao
+            database.userTaskWithPatternDao()
 }
